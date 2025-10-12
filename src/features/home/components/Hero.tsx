@@ -1,13 +1,24 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../../../components/ui/button';
 
+const hpBg = new URL('@/assets/images/hp_bg.jpg', import.meta.url).href;
+const hpItem1 = new URL('@/assets/images/hp_item.png', import.meta.url).href;
+const hpItem2 = new URL('@/assets/images/hp_item2.png', import.meta.url).href;
+const hpItem3 = new URL('@/assets/images/hp_item3.png', import.meta.url).href;
+
 export default function Hero() {
-  const aiImages = [
-    'https://images.unsplash.com/photo-1625314887424-9f190599bd56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwcm9ib3R8ZW58MXx8fHwxNzYwMTQyMDI4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1645839078449-124db8a049fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXVyYWwlMjBuZXR3b3JrJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NjAyMDE5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1655891709727-1506dff4af97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwbGVhcm5pbmclMjBBSXxlbnwxfHx8fDE3NjAyNDA1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const aiImages = [hpItem1, hpItem2, hpItem3];
+
+  // Auto-rotate images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % aiImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [aiImages.length]);
 
   return (
     <section className="relative h-screen min-h-[600px] pt-32 overflow-hidden">
@@ -16,7 +27,7 @@ export default function Hero() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1645839078449-124db8a049fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMHRlY2hub2xvZ3klMjBuZXR3b3JrfGVufDF8fHx8MTc2MDI1NDgyOXww&ixlib=rb-4.1.0&q=80&w=1080')`,
+            backgroundImage: `url('${hpBg}')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a2342]/90 via-[#53bedd]/40 to-[#0a2342]/80" />
@@ -26,12 +37,13 @@ export default function Hero() {
       <div className="container mx-auto px-4 lg:px-8 xl:px-12 h-full relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-8 lg:gap-12 xl:gap-16">
           {/* Left Content - 70% */}
-          <div className="flex-1 lg:w-[65%] xl:w-[70%] text-white space-y-6 text-center lg:text-left">
+          <div className="flex-1 lg:w-[65%] xl:w-[70%] text-white space-y-6 text-center lg:text-left mt-8 md:mt-0">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-white"
+              style={{ fontWeight: 700, fontSize: '2rem', color: '#53bedd'}}
             >
               AIDC corp. was established with the mission of pioneering in the fields of AI, data,
               and digital technologies.
@@ -68,27 +80,23 @@ export default function Hero() {
           </div>
 
           {/* Right Content - 30% AI Images */}
-          <div className="lg:w-[35%] xl:w-[30%] flex items-center justify-center gap-4 xl:gap-6">
-            {aiImages.map((image, index) => (
+          <div className="lg:w-[35%] xl:w-[30%] flex items-center justify-center">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{
-                  opacity: 1,
-                  scale: [0.8, 1.1, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: index * 0.3,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  repeatDelay: 3,
-                }}
-                className="hidden md:block w-32 h-32 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-2xl overflow-hidden shadow-2xl"
+                key={currentImageIndex}
+                initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                exit={{ opacity: 0, scale: 0.8, rotateY: 90 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                className="hidden md:block w-64 h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <img src={image} alt={`AI Technology ${index + 1}`} className="w-full h-full object-cover" />
+                <img 
+                  src={aiImages[currentImageIndex]} 
+                  alt={`AI Technology ${currentImageIndex + 1}`} 
+                  className="w-full h-full object-cover" 
+                />
               </motion.div>
-            ))}
+            </AnimatePresence>
           </div>
         </div>
       </div>

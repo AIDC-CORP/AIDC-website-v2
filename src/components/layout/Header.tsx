@@ -97,42 +97,25 @@ export default function Header() {
             </div>
 
             {/* Language Switcher */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-sm font-medium">
               <button
                 onClick={() => setLanguage('vn')}
-                className={`w-8 h-6 rounded overflow-hidden border-2 transition-all ${
-                  language === 'vn' ? 'border-[#53bedd] scale-110' : 'border-transparent'
+                className={`transition-colors ${
+                  language === 'vn' ? 'text-[#53bedd] font-bold' : 'text-gray-600 hover:text-[#53bedd]'
                 }`}
                 title="Tiếng Việt"
               >
-                <div className="w-full h-1/2 bg-red-600"></div>
-                <div className="w-full h-1/2 bg-yellow-400"></div>
+                VN
               </button>
+              <span className="text-gray-400">|</span>
               <button
                 onClick={() => setLanguage('en')}
-                className={`w-8 h-6 rounded overflow-hidden border-2 transition-all ${
-                  language === 'en' ? 'border-[#53bedd] scale-110' : 'border-transparent'
+                className={`transition-colors ${
+                  language === 'en' ? 'text-[#53bedd] font-bold' : 'text-gray-600 hover:text-[#53bedd]'
                 }`}
                 title="English"
               >
-                <div className="relative w-full h-full bg-blue-700">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-[2px] bg-white"></div>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-[2px] h-full bg-white"></div>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full" style={{ 
-                      background: 'linear-gradient(45deg, transparent 46%, white 46%, white 54%, transparent 54%), linear-gradient(-45deg, transparent 46%, white 46%, white 54%, transparent 54%)'
-                    }}></div>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full" style={{ 
-                      background: 'linear-gradient(45deg, transparent 48%, red 48%, red 52%, transparent 52%), linear-gradient(-45deg, transparent 48%, red 48%, red 52%, transparent 52%)'
-                    }}></div>
-                  </div>
-                </div>
+                EN
               </button>
             </div>
 
