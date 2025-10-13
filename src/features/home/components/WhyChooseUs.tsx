@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useMotionValue, animate, useTransform } from 'motion/react';
 import { Users, Target, Lightbulb, Award } from 'lucide-react';
 
 const values = [
@@ -9,77 +9,225 @@ const values = [
   { icon: Award, title: 'Quality' },
 ];
 
+// Hook đo kích thước container theo thời gian thực
+function useContainerWidth<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setWidth(entry.contentRect.width);
+    });
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
+
+  return { ref, width };
+}
+
+// Hàm clamp tiện dụng
+const clamp = (val: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, val));
+
 export default function WhyChooseUs() {
+  // Góc quay chung cho cả quỹ đạo
+  const rotation = useMotionValue(0);
+  useEffect(() => {
+    const controls = animate(rotation, 360, {
+      duration: 20,
+      repeat: Infinity,
+      ease: 'linear',
+    });
+    return controls.stop;
+  }, [rotation]);
+
+  // Đo vùng khung orbit để scale mọi thứ theo container, không theo viewport
+  const { ref: orbitWrapRef, width: cw } = useContainerWidth<HTMLDivElement>();
+
+  // Tính toán kích thước theo container width
+  // Bạn có thể điều chỉnh các hệ số để “đậm”/“mảnh” hơn.
+  const sizes = useMemo(() => {
+    // Khung cao: 60% chiều rộng, nhưng nằm trong [380, 720] px
+    const sectionHeight = clamp(cw * 0.6, 380, 720);
+
+    // Đường tròn nét đứt ~45% bề rộng container, trong khoảng [360, 680] px
+    const dashedSize = clamp(cw * 0.45, 360, 680);
+    const orbitRadius = dashedSize / 2;
+
+    // Vòng trung tâm ~58% đường tròn nét đứt, rồi *0.9 (yêu cầu “nhỏ hơn 10%”)
+    const centerBase = dashedSize * 0.58;
+    const centerSize = Math.round(centerBase * 0.9);
+
+    // Planet (icon circle) ~18% đường tròn nét đứt, sau đó +20%
+    const planetBase = dashedSize * 0.18;
+    const itemSize = Math.round(planetBase * 1.2);
+    const halfItem = itemSize / 2;
+
+    // Typography theo centerSize
+    const titleSize = Math.max(14, Math.round(centerSize * 0.14));
+    const bodySize = Math.max(12, Math.round(centerSize * 0.095));
+    const pad = Math.round(centerSize * 0.12);
+    const contentW = Math.round(centerSize * 0.72);
+
+    return {
+      sectionHeight,
+      dashedSize,
+      orbitRadius,
+      centerSize,
+      itemSize,
+      halfItem,
+      titleSize,
+      bodySize,
+      pad,
+      contentW,
+    };
+  }, [cw]);
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <div className="text-center mb-16">
-          <h2 className="relative inline-block text-gray-900">
+          <h2
+            className="main-heading"
+            style={{
+              fontSize: 'clamp(2rem, 2.2vw, 3rem)',
+              fontWeight: 700,
+              zIndex: 1,
+              color: '#222',
+              position: 'relative',
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              lineHeight: 1.1,
+            }}
+          >
             Why choose us?
-            <span className="absolute inset-0 text-gray-200 blur-sm -z-10">Why choose us?</span>
+            <span
+              className="main-heading-shadow"
+              style={{
+                fontSize: 'clamp(2.1rem, 2.4vw, 3.2rem)',
+                fontWeight: 700,
+                zIndex: 0,
+                opacity: 0.2,
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                transform: 'translate(12px, -15px)',
+                pointerEvents: 'none',
+                whiteSpace: 'nowrap',
+                lineHeight: 1.1,
+              }}
+            >
+              Why choose us?
+            </span>
           </h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto h-[600px] flex items-center justify-center">
-          {/* Rotating dashed circle */}
+        {/* Orbit Section */}
+        <div
+          ref={orbitWrapRef}
+          className="relative mx-auto flex items-center justify-center overflow-hidden"
+          style={{ maxWidth: '100%', height: `${sizes.sectionHeight}px` }}
+        >
+          {/* Dashed circle quay cùng quỹ đạo */}
           <motion.div
-            className="absolute w-96 h-96 rounded-full border-4 border-dashed border-[#53bedd]"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: 'linear',
+            className="absolute rounded-full border-4 border-dashed border-[#53bedd]"
+            style={{
+              width: sizes.dashedSize,
+              height: sizes.dashedSize,
+              rotate: rotation,
             }}
           />
 
-          {/* Center Circle */}
-          <div className="relative z-10 w-64 h-64 rounded-full bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] shadow-2xl flex flex-col items-center justify-center text-white p-8">
-            <h3 className="text-white mb-4 text-center">Growing together</h3>
-            <p className="text-center text-white/90 text-sm">
-              Building sustainable relationships through innovation and excellence
-            </p>
-          </div>
+          {/* Container quay: các planet di chuyển trên đường nét đứt */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ rotate: rotation }}
+          >
+            {values.map((value, index) => {
+              const angle = (index * 360) / values.length; // 0/90/180/270
+              const counter = useTransform(rotation, (r) => -(r + angle)); // giữ icon/text thẳng
 
-          {/* Orbiting Values */}
-          {values.map((value, index) => {
-            const angle = (index * 360) / values.length;
-            const radius = 220;
-            const x = Math.cos((angle * Math.PI) / 180) * radius;
-            const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-            return (
-              <motion.div
-                key={index}
-                className="absolute"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                }}
-                animate={{
-                  x: [x, Math.cos(((angle + 360) * Math.PI) / 180) * radius],
-                  y: [y, Math.sin(((angle + 360) * Math.PI) / 180) * radius],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              >
-                <motion.div
-                  className="w-24 h-24 -ml-12 -mt-12 rounded-full bg-white shadow-xl flex flex-col items-center justify-center border-4 border-[#53bedd]"
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: 'linear',
+              return (
+                <div
+                  key={index}
+                  className="absolute left-1/2 top-1/2"
+                  style={{
+                    transform: `rotate(${angle}deg) translateY(-${sizes.orbitRadius}px)`,
+                    transformOrigin: '0 0',
                   }}
                 >
-                  <value.icon className="w-8 h-8 text-[#53bedd] mb-1" />
-                  <span className="text-xs text-gray-700 text-center px-2">{value.title}</span>
-                </motion.div>
-              </motion.div>
-            );
-          })}
+                  <motion.div
+                    className="rounded-full bg-white shadow-xl flex flex-col items-center justify-center border-4 border-[#53bedd]"
+                    style={{
+                      width: sizes.itemSize,
+                      height: sizes.itemSize,
+                      marginLeft: -sizes.halfItem,
+                      marginTop: -sizes.halfItem,
+                      rotate: counter,
+                      boxShadow:
+                        '0 14px 30px rgba(83,190,221,0.15), 0 6px 12px rgba(0,0,0,0.06)',
+                    }}
+                  >
+                    <value.icon
+                      className="text-[#53bedd] mb-1"
+                      style={{
+                        width: sizes.itemSize * 0.33,
+                        height: sizes.itemSize * 0.33,
+                      }}
+                    />
+                    <span className="text-xs text-gray-700 text-center px-2">
+                      {value.title}
+                    </span>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </motion.div>
+
+          {/* Center circle (typography theo đường kính) */}
+          <div
+            className="relative z-10 rounded-full bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] shadow-2xl flex items-center justify-center text-white text-center"
+            style={{
+              width: sizes.centerSize,
+              height: sizes.centerSize,
+              padding: sizes.pad,
+              boxShadow:
+                '0 24px 50px rgba(83,190,221,0.18), 0 10px 20px rgba(0,0,0,0.08)',
+            }}
+          >
+            <div
+              style={{
+                maxWidth: sizes.contentW,
+                margin: '0 auto',
+                textWrap: 'balance' as any,
+                wordBreak: 'break-word',
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: sizes.titleSize,
+                  fontWeight: 800,
+                  lineHeight: 1.15,
+                  marginBottom: Math.round(sizes.titleSize * 0.35),
+                  textShadow: '0 1px 2px rgba(0,0,0,0.25)',
+                }}
+              >
+                Growing together
+              </h3>
+              <p
+                style={{
+                  fontSize: sizes.bodySize,
+                  lineHeight: 1.35,
+                  opacity: 0.95,
+                  textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                }}
+              >
+                Building sustainable relationships
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

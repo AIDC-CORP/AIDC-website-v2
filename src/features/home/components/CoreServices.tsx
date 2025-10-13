@@ -42,10 +42,14 @@ export default function CoreServices() {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="relative inline-block text-gray-900">
+          <div className="text-center mb-16">
+            <h2 className="main-heading"
+              style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+            >
             Core services
-            <span className="absolute inset-0 text-gray-200 blur-sm -z-10">Core services</span>
+              <span className="main-heading-shadow"
+                style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+              >Core services</span>
           </h2>
         </div>
 

@@ -21,7 +21,7 @@ export default function Hero() {
   }, [aiImages.length]);
 
   return (
-    <section className="relative h-screen min-h-[600px] pt-32 overflow-hidden">
+    <section className="relative h-screen min-h-[600px] pt-32 md:pt-0 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div
@@ -34,15 +34,15 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 lg:px-8 xl:px-12 h-full relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-8 lg:gap-12 xl:gap-16">
+      <div className="container mx-auto px-4 lg:px-8 xl:px-12 h-full relative z-10 mt-8 md:mt-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-8 lg:gap-12 xl:gap-16 pt-8 md:pt-0">
           {/* Left Content - 70% */}
-          <div className="flex-1 lg:w-[65%] xl:w-[70%] text-white space-y-6 text-center lg:text-left mt-8 md:mt-0">
+          <div className="flex-1 lg:w-[65%] xl:w-[70%] text-white space-y-6 text-center lg:text-left">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-white"
+              className="text-white mt-8 md:mt-0"
               style={{ fontWeight: 700, fontSize: '2rem', color: '#53bedd'}}
             >
               AIDC corp. was established with the mission of pioneering in the fields of AI, data,

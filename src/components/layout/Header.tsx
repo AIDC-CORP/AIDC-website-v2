@@ -34,6 +34,12 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/30"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
       {/* Header Top */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="container mx-auto px-4 py-2">
@@ -132,14 +138,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-white border-t border-gray-200 relative z-50">
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4 items-center">
             {items.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-gray-800 hover:text-[#53bedd] transition-colors ${
+                className={`text-gray-800 hover:text-[#53bedd] transition-colors text-center ${
                   location.pathname === item.path ? 'text-[#53bedd]' : ''
                 }`}
               >
