@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../../../components/ui/button';
 import { motion } from 'motion/react';
 
+const aboutIntroImage1 = new URL('@/assets/images/ai_trong_nong_nghiep.webp', import.meta.url).href;
+const aboutIntroImage2 = new URL('@/assets/images/AI-Systems.webp', import.meta.url).href;
+const aboutIntroImage3 = new URL('@/assets/images/big_data.png', import.meta.url).href;
+const aboutIntroImage4 = new URL('@/assets/images/software_development.webp', import.meta.url).href;
+
 type AboutIntroProps = {
   images?: string[];               // 4 ảnh
   headerHeightPx?: number;         // fallback khi không tìm thấy header
@@ -31,10 +36,10 @@ export default function AboutIntro({
     images?.length === 4
       ? images
       : [
-          'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop',
+          aboutIntroImage1,
+          aboutIntroImage2,
+          aboutIntroImage3,
+          aboutIntroImage4,
         ];
 
   return (
