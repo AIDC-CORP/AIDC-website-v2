@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const logo = new URL('@/assets/images/logo.png', import.meta.url).href;
+const logo = new URL('@/assets/images/logo_aidc.png', import.meta.url).href;
 
 export default function Footer() {
   return (
@@ -44,12 +44,14 @@ export default function Footer() {
               >
                 Career Opportunities
               </Link>
-              <Link
-                to="/blog"
+              <a
+                href="https://blog.aidccompany.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
                 Blog
-              </Link>
+              </a>
               <Link
                 to="/contact"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
@@ -66,22 +68,22 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#53bedd] flex-shrink-0 mt-1" />
                 <p className="text-white/80 text-sm">
-                  123 Technology Street, Cau Giay District, Hanoi, Vietnam
+                  19n7b Trung Hoa Nhan Chinh Urban Area, Thanh Xuan District, Hanoi, Vietnam
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#53bedd] flex-shrink-0" />
-                <a href="tel:+84123456789" className="text-white/80 hover:text-[#53bedd] text-sm">
-                  +84 123 456 789
+                <a href="tel:+84865903798" className="text-white/80 hover:text-[#53bedd] text-sm">
+                  +84 865903798
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#53bedd] flex-shrink-0" />
                 <a
-                  href="mailto:contact@aidc.com.vn"
+                  href="mailto:contact@aidccompany.com"
                   className="text-white/80 hover:text-[#53bedd] text-sm"
                 >
-                  contact@aidc.com.vn
+                  contact@aidccompany.com
                 </a>
               </div>
 

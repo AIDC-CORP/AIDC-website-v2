@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../../components/ui/button';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
 const aboutIntroImage1 = new URL('@/assets/images/ai_trong_nong_nghiep.webp', import.meta.url).href;
 const aboutIntroImage2 = new URL('@/assets/images/AI-Systems.webp', import.meta.url).href;
@@ -19,6 +20,7 @@ export default function AboutIntro({
   headerSelector = '#site-header',  // đặt id cho toàn bộ cụm navbar + info bar
 }: AboutIntroProps) {
   const [hh, setHh] = useState(headerHeightPx);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const el = document.querySelector<HTMLElement>(headerSelector);
@@ -59,12 +61,28 @@ export default function AboutIntro({
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-10">
           <motion.div
             className="w-full lg:w-1/2 text-center lg:text-left space-y-6 lg:pr-4 mt-8"
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h2 className="text-white text-3xl md:text-4xl font-bold" style={{ fontWeight: 700, fontSize: '2rem', color: '#fff'}}>About us</h2>
-            <p className="text-white/95 leading-relaxed text-base md:text-lg">
+            <motion.h2 
+              className="text-white text-3xl md:text-4xl font-bold" 
+              style={{ fontWeight: 700, fontSize: '2rem', color: '#fff'}}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              About us
+            </motion.h2>
+            <motion.p 
+              className="text-white/95 leading-relaxed text-base md:text-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Vietnam AI Technology and Digital Transformation Joint Stock Company (AIDC Corp.) was
               established with the mission to pioneer in the fields of AI, data, and digital
               technology. We provide end-to-end solutions from software development and data
@@ -73,18 +91,45 @@ export default function AboutIntro({
               improve CO₂ processes, supporting enterprises in reducing environmental impact.
               Innovation and advanced technologies are always at the core of our vision, enabling us
               to deliver tailored and sustainable solutions for our customers.
-            </p>
-            <div>
-              <Button className="bg-white text-[#53bedd] hover:bg-white/90 px-8 py-6 rounded-full">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Button 
+                className="bg-white text-[#53bedd] hover:bg-white/90 px-8 py-6 rounded-full"
+                onClick={() => {
+                  navigate('/');
+                  setTimeout(() => {
+                    const element = document.getElementById('core-services');
+                    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }, 100);
+                }}
+              >
                 Discover our services
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
 
-          <motion.div className="w-full lg:w-1/2 lg:pl-4" initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
+          <motion.div 
+            className="w-full lg:w-1/2 lg:pl-4"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
               {pics.map((src, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/20 bg-white/5 backdrop-blur">
+                <motion.div 
+                  key={i} 
+                  className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/20 bg-white/5 backdrop-blur"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                >
                   <img
                     src={src}
                     alt={`About image ${i + 1}`}
@@ -92,7 +137,7 @@ export default function AboutIntro({
                     loading="lazy"
                     decoding="async"
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

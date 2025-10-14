@@ -15,7 +15,7 @@ export default function Header() {
     { label: 'About Us', path: '/about' },
     { label: 'Customers & Partners', path: '/customers' },
     { label: 'Career Opportunities', path: '/career' },
-    { label: 'Blog', path: '/blog' },
+    { label: 'Blog', path: 'https://blog.aidccompany.com/', external: true },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -24,7 +24,7 @@ export default function Header() {
     { label: 'Về chúng tôi', path: '/about' },
     { label: 'Khách hàng & Đối tác', path: '/customers' },
     { label: 'Cơ hội nghề nghiệp', path: '/career' },
-    { label: 'Blog', path: '/blog' },
+    { label: 'Blog', path: 'https://blog.aidccompany.com/', external: true },
     { label: 'Liên hệ', path: '/contact' },
   ];
 
@@ -70,22 +70,42 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-4 xl:gap-8 flex-1 justify-center">
-            {items.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-gray-800 hover:text-[#53bedd] transition-colors relative group whitespace-nowrap ${
-                  location.pathname === item.path ? 'text-[#53bedd]' : ''
-                }`}
-              >
-                {item.label}
-                <span
-                  className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#53bedd] group-hover:w-full transition-all duration-300 ${
-                    location.pathname === item.path ? 'w-full' : ''
-                  }`}
-                />
-              </Link>
-            ))}
+            {items.map((item) => {
+              const isActive = location.pathname === item.path;
+              const linkClass = `text-gray-800 hover:text-[#53bedd] transition-colors relative group whitespace-nowrap ${
+                isActive ? 'text-[#53bedd]' : ''
+              }`;
+              
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#53bedd] group-hover:w-full transition-all duration-300" />
+                  </a>
+                );
+              }
+              
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={linkClass}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#53bedd] group-hover:w-full transition-all duration-300 ${
+                      isActive ? 'w-full' : ''
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Side */}
@@ -138,18 +158,38 @@ export default function Header() {
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 relative z-50">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4 items-center">
-            {items.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`text-gray-800 hover:text-[#53bedd] transition-colors text-center ${
-                  location.pathname === item.path ? 'text-[#53bedd]' : ''
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {items.map((item) => {
+              const isActive = location.pathname === item.path;
+              const linkClass = `text-gray-800 hover:text-[#53bedd] transition-colors text-center ${
+                isActive ? 'text-[#53bedd]' : ''
+              }`;
+              
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className={linkClass}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={linkClass}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

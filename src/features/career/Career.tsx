@@ -63,7 +63,7 @@ const jobListings = [
   },
 ];
 
-export default function Career() {
+export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [positionFilter, setPositionFilter] = useState('all');
   const [dateFilter, setDateFilter] = useState('all');
@@ -85,12 +85,36 @@ export default function Career() {
     return matchesSearch && matchesPosition && matchesField;
   });
 
+  // Inline styles dùng chung cho ô và mô tả
+  const baseCellStyle: React.CSSProperties = {
+    whiteSpace: 'normal',
+    wordBreak: 'break-word',
+    overflowWrap: 'anywhere',
+    verticalAlign: 'top',
+  };
+
+  const tableStyle: React.CSSProperties = {
+    width: '100%',
+    tableLayout: 'fixed', // NGĂN dãn cột khi mở More
+    borderCollapse: 'separate',
+    borderSpacing: 0,
+  };
+
+  const tableWrapperStyle: React.CSSProperties = {
+    overflowX: 'auto', // an toàn trên màn hẹp
+    width: '100%',
+  };
+
+  const expandCellInnerStyle: React.CSSProperties = {
+    maxWidth: '100%',
+    overflow: 'hidden', // không cho nội dung đẩy rộng bảng
+  };
+
   return (
-    <div className="pt-32 pb-20">
+    <div className="pt-32 pb-20" style={{ marginTop: `-${headerHeightPx}px`, paddingTop: `${headerHeightPx + 80}px` }}>
       {/* Section 1 - Header with Filters */}
       <section className="py-20 bg-[#0a2342]">
         <div className="container mx-auto px-4">
-          {/* Title Section */}
           <div className="text-center mb-12 space-y-4">
             <h1 className="text-[#53bedd]">GROW WITH US, SUCCEED WITH US</h1>
             <p className="text-white/90 max-w-3xl mx-auto">
@@ -155,58 +179,76 @@ export default function Career() {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-gray-50">
-                  <TableHead className="w-16">No.</TableHead>
-                  <TableHead>Major</TableHead>
-                  <TableHead>Position</TableHead>
-                  <TableHead className="w-32 text-center">Find out</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredJobs.map((job) => (
-                  <>
-                    <TableRow key={job.id} className="hover:bg-gray-50">
-                      <TableCell>{job.id}</TableCell>
-                      <TableCell>{job.major}</TableCell>
-                      <TableCell>{job.position}</TableCell>
-                      <TableCell className="text-center">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => toggleRow(job.id)}
-                          className="flex items-center gap-2"
-                        >
-                          {expandedRows.includes(job.id) ? (
-                            <>
-                              Less <ChevronUp className="w-4 h-4" />
-                            </>
-                          ) : (
-                            <>
-                              More <ChevronDown className="w-4 h-4" />
-                            </>
-                          )}
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                    {expandedRows.includes(job.id) && (
+            <div style={tableWrapperStyle}>
+              {/* DÙNG style trực tiếp để đảm bảo hiệu lực */}
+              <Table style={tableStyle}>
+                <TableHeader>
+                  <TableRow style={{ backgroundColor: '#f9fafb' }}>
+                    <TableHead style={{ ...baseCellStyle, width: 64 }}>No.</TableHead>
+                    <TableHead style={baseCellStyle}>Major</TableHead>
+                    <TableHead style={baseCellStyle}>Position</TableHead>
+                    <TableHead style={{ ...baseCellStyle, width: 128, textAlign: 'center' }}>
+                      Find out
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody>
+                  {filteredJobs.map((job) => (
+                    <React.Fragment key={job.id}>
                       <TableRow>
-                        <TableCell colSpan={4} className="bg-gray-50 border-t border-gray-200">
-                          <div className="py-4 px-6">
-                            <h4 className="text-gray-900 mb-2">Job Description</h4>
-                            <p className="text-gray-700">{job.description}</p>
-                            <Button className="mt-4 bg-[#53bedd] hover:bg-[#53bedd]/90">
-                              Apply Now
-                            </Button>
-                          </div>
+                        <TableCell style={baseCellStyle}>{job.id}</TableCell>
+                        <TableCell style={baseCellStyle}>{job.major}</TableCell>
+                        <TableCell style={baseCellStyle}>{job.position}</TableCell>
+                        <TableCell style={{ ...baseCellStyle, textAlign: 'center' }}>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => toggleRow(job.id)}
+                            className="flex items-center gap-2"
+                          >
+                            {expandedRows.includes(job.id) ? (
+                              <>
+                                Less <ChevronUp className="w-4 h-4" />
+                              </>
+                            ) : (
+                              <>
+                                More <ChevronDown className="w-4 h-4" />
+                              </>
+                            )}
+                          </Button>
                         </TableCell>
                       </TableRow>
-                    )}
-                  </>
-                ))}
-              </TableBody>
-            </Table>
+
+                      {expandedRows.includes(job.id) && (
+                        <TableRow>
+                          <TableCell colSpan={4} style={{ backgroundColor: '#f9fafb', padding: 0 }}>
+                            <div style={{ ...expandCellInnerStyle, padding: '16px 24px' }}>
+                              <h4 style={{ color: '#111827', marginBottom: 8 }}>Job Description</h4>
+                              <p
+                                style={{
+                                  color: '#374151',
+                                  margin: 0,
+                                  whiteSpace: 'normal',
+                                  wordBreak: 'break-word',
+                                  overflowWrap: 'anywhere',
+                                  lineHeight: 1.6,
+                                }}
+                              >
+                                {job.description}
+                              </p>
+                              <Button className="mt-4 bg-[#53bedd] hover:bg-[#53bedd]/90">
+                                Apply Now
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
 
             {filteredJobs.length === 0 && (
               <div className="text-center py-12 text-gray-500">

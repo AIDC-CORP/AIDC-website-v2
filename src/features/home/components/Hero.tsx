@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../../../components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const hpBg = new URL('@/assets/images/hp_bg.jpg', import.meta.url).href;
 const hpItem1 = new URL('@/assets/images/hp_item.png', import.meta.url).href;
@@ -9,6 +10,7 @@ const hpItem3 = new URL('@/assets/images/hp_item3.png', import.meta.url).href;
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
   const aiImages = [hpItem1, hpItem2, hpItem3];
 
   // Auto-rotate images every 3 seconds
@@ -67,12 +69,19 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
-              <Button className="bg-[#53bedd] text-white hover:bg-[#53bedd]/90 px-8 py-6 rounded-full">
+              <Button 
+                className="bg-[#53bedd] text-white hover:bg-[#53bedd]/90 px-8 py-6 rounded-full"
+                onClick={() => {
+                  const element = document.getElementById('core-services');
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+              >
                 Our services
               </Button>
               <Button
                 variant="outline"
                 className="bg-white text-[#53bedd] border-white hover:bg-white/90 hover:text-[#53bedd] px-8 py-6 rounded-full"
+                onClick={() => navigate('/contact')}
               >
                 Contact us
               </Button>

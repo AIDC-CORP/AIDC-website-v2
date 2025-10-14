@@ -7,7 +7,7 @@ import { Button } from '../../components/ui/button';
 export default function Contact() {
   return (
     <div className="pt-32 pb-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 pt-16">
         <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left - Contact Info */}
@@ -24,7 +24,7 @@ export default function Contact() {
                   <div>
                     <h4 className="text-white mb-1">Address</h4>
                     <p className="text-white/90">
-                      19n7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội
+                      19n7b Trung Hoa Nhan Chinh Urban Area, Thanh Xuan District, Hanoi, Vietnam
                     </p>
                   </div>
                 </div>
@@ -33,8 +33,8 @@ export default function Contact() {
                   <Phone className="w-6 h-6 flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="text-white mb-1">Phone</h4>
-                    <a href="tel:0865903798" className="text-white/90 hover:text-white">
-                      0865903798
+                    <a href="tel:+84865903798" className="text-white/90 hover:text-white">
+                      +84 865903798
                     </a>
                   </div>
                 </div>
@@ -44,10 +44,10 @@ export default function Contact() {
                   <div>
                     <h4 className="text-white mb-1">Email</h4>
                     <a
-                      href="mailto:Contact@aidccompany.com"
+                      href="mailto:contact@aidccompany.com"
                       className="text-white/90 hover:text-white"
                     >
-                      Contact@aidccompany.com
+                      contact@aidccompany.com
                     </a>
                   </div>
                 </div>
