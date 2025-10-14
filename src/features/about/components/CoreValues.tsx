@@ -1,102 +1,80 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../../../styles/CoreValues.css";
 
-const coreValues = [
-  'PRACTICE is the criterion to test TRUTH',
-  'RESPONSIBILITY is our unwavering commitment TO CUSTOMERS',
-  'CREATIVITY paves the way for BREAKTHROUGH',
-  'DISCIPLINE builds COLLECTIVE STRENGTH',
-  'QUALITY is the measure of REPUTATION',
-  'TRANSPARENCY builds TRUST',
-  'CONTINUOUS LEARNING so we can GO FURTHER',
+type Item = { text: string };
+
+const DATA: Item[] = [
+  { text: "PRACTICE is the criterion to test TRUTH" },
+  { text: "RESPONSIBILITY is our unwavering commitment TO CUSTOMERS" },
+  { text: "CREATIVITY paves the way for BREAKTHROUGH" },
+  { text: "DISCIPLINE builds COLLECTIVE STRENGTH" },
+  { text: "QUALITY is the measure of REPUTATION" },
+  { text: "TRANSPARENCY builds TRUST" },
+  { text: "CONTINUOUS LEARNING so we can GO FURTHER" },
 ];
 
-export default function CoreValues() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function CoreValuesCSS() {
+  const [idx, setIdx] = useState(0);
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % coreValues.length);
-  };
+  const atFirst = idx === 0;
+  const atLast = idx === DATA.length - 1;
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + coreValues.length) % coreValues.length);
-  };
+  const next = () => !atLast && setIdx((p) => p + 1);
+  const prev = () => !atFirst && setIdx((p) => p - 1);
 
-  const getVisibleValues = () => {
-    const visible: { index: number; value: string; position: number; }[] = [];
-    for (let i = -1; i <= 1; i++) {
-      const index = (currentIndex + i + coreValues.length) % coreValues.length;
-      visible.push({ index, value: coreValues[index], position: i });
-    }
-    return visible;
-  };
+  // (Nếu bạn muốn vòng lặp vô hạn, bỏ atFirst/atLast và dùng:
+  // setIdx((p) => (p + 1) % DATA.length) / setIdx((p) => (p - 1 + DATA.length) % DATA.length)
+  // nhưng với “track trượt” kiểu này thì phiên bản hữu hạn cho bố cục tự nhiên nhất.)
+
+  const styleIdx = useMemo(() => ({ ["--idx" as any]: String(idx) }), [idx]);
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="relative inline-block text-gray-900">
-            Core values
-            <span className="absolute inset-0 text-gray-200 blur-sm -z-10">Core values</span>
-          </h2>
-        </div>
+    <section className="core-value">
+      <div className="text-center mb-16">
+        <h2 className="main-heading"
+          style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+        >
+          Core values
+          <span className="main-heading-shadow"
+            style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+          >Core values</span>
+        </h2>
+      </div>
 
-        <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#53bedd] text-white rounded-full flex items-center justify-center hover:bg-[#2a9cbd] transition-colors shadow-lg"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+      <div className="core-carousel">
+        <button
+          className="nav-arrow left"
+          onClick={prev}
+          disabled={atFirst}
+          aria-label="Prev"
+        >
+          <ChevronLeft size={24} />
+        </button>
 
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#53bedd] text-white rounded-full flex items-center justify-center hover:bg-[#2a9cbd] transition-colors shadow-lg"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Values Display */}
-          <div className="overflow-hidden px-20">
-            <div className="flex items-center justify-center gap-8 h-80">
-              <AnimatePresence mode="popLayout">
-                {getVisibleValues().map(({ index, value, position }) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8, x: position * 100 }}
-                    animate={{
-                      opacity: position === 0 ? 1 : 0.4,
-                      scale: position === 0 ? 1 : 0.8,
-                      x: position * 320,
-                    }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.5 }}
-                    className={`flex-shrink-0 w-72 h-72 rounded-full bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] shadow-2xl flex items-center justify-center p-8 ${
-                      position !== 0 ? 'pointer-events-none' : ''
-                    }`}
-                  >
-                    <p className="text-white text-center">{value}</p>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {coreValues.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-[#53bedd] w-8' : 'bg-gray-300'
-                }`}
-              />
+        {/* viewport */}
+        <div className="circles-viewport">
+          {/* track trượt ngang: --idx được dùng để translateX */}
+          <div className="circles-track" style={styleIdx}>
+            {DATA.map((d, i) => (
+              <div className={`slide ${i === idx ? "active" : ""}`} key={i}>
+                <div className="circle">
+                  {/* Có thể tách t1/sub/t2 nếu muốn — ở đây dùng 1 text */}
+                  <p className="t2">{d.text}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
+
+        <button
+          className="nav-arrow right"
+          onClick={next}
+          disabled={atLast}
+          aria-label="Next"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </section>
   );
