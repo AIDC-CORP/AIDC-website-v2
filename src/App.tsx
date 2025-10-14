@@ -4,7 +4,6 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './features/home/Home';
 import About from './features/about/About';
-import Fields from './features/fields/Fields';
 import Customers from './features/customers/Customers';
 import Career from './features/career/Career';
 import Contact from './features/contact/Contact';
@@ -21,7 +20,6 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/fields" element={<Fields />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/career" element={<Career />} />
             <Route path="/blog" element={<ComingSoon />} />

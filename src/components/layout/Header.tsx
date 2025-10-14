@@ -13,7 +13,6 @@ export default function Header() {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'About Us', path: '/about' },
-    { label: 'Fields', path: '/fields' },
     { label: 'Customers & Partners', path: '/customers' },
     { label: 'Career Opportunities', path: '/career' },
     { label: 'Blog', path: '/blog' },
@@ -23,7 +22,6 @@ export default function Header() {
   const navItemsVN = [
     { label: 'Trang chủ', path: '/' },
     { label: 'Về chúng tôi', path: '/about' },
-    { label: 'Lĩnh vực', path: '/fields' },
     { label: 'Khách hàng & Đối tác', path: '/customers' },
     { label: 'Cơ hội nghề nghiệp', path: '/career' },
     { label: 'Blog', path: '/blog' },

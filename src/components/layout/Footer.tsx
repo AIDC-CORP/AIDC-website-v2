@@ -33,12 +33,6 @@ export default function Footer() {
                 About Us
               </Link>
               <Link
-                to="/fields"
-                className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
-              >
-                Fields
-              </Link>
-              <Link
                 to="/customers"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
