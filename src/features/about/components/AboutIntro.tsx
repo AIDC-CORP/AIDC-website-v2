@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../../../components/ui/button';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
+import { useI18n } from '../../../App';
 
 const aboutIntroImage1 = new URL('@/assets/images/ai_trong_nong_nghiep.webp', import.meta.url).href;
 const aboutIntroImage2 = new URL('@/assets/images/AI-Systems.webp', import.meta.url).href;
@@ -21,6 +22,7 @@ export default function AboutIntro({
 }: AboutIntroProps) {
   const [hh, setHh] = useState(headerHeightPx);
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   useEffect(() => {
     const el = document.querySelector<HTMLElement>(headerSelector);
@@ -74,7 +76,7 @@ export default function AboutIntro({
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              About us
+              {t('about_title')}
             </motion.h2>
             <motion.p 
               className="text-white/95 leading-relaxed text-base md:text-lg"
@@ -83,14 +85,7 @@ export default function AboutIntro({
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Vietnam AI Technology and Digital Transformation Joint Stock Company (AIDC Corp.) was
-              established with the mission to pioneer in the fields of AI, data, and digital
-              technology. We provide end-to-end solutions from software development and data
-              analytics to R&amp;D in AI, AR/VR, and green agriculture automation, helping businesses
-              optimize operations and embrace sustainable growth. We also apply AI to monitor and
-              improve CO₂ processes, supporting enterprises in reducing environmental impact.
-              Innovation and advanced technologies are always at the core of our vision, enabling us
-              to deliver tailored and sustainable solutions for our customers.
+              {t('about_intro')}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -108,7 +103,7 @@ export default function AboutIntro({
                   }, 100);
                 }}
               >
-                Discover our services
+                {t('about_btn_discover')}
               </Button>
             </motion.div>
           </motion.div>

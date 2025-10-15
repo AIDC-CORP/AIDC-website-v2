@@ -1,88 +1,78 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValue, animate, useTransform } from 'motion/react';
 import { Users, Target, Lightbulb, Award } from 'lucide-react';
+import { useI18n } from '../../../App';
 
-const values = [
-  { icon: Users, title: 'Partnership' },
-  { icon: Target, title: 'Excellence' },
-  { icon: Lightbulb, title: 'Innovation' },
-  { icon: Award, title: 'Quality' },
-];
+function useValues() {
+  const { t } = useI18n();
+  return useMemo(
+    () => [
+      { icon: Users, title: t('why_val_partnership') },
+      { icon: Target, title: t('why_val_excellence') },
+      { icon: Lightbulb, title: t('why_val_innovation') },
+      { icon: Award, title: t('why_val_quality') },
+    ],
+    [t]
+  );
+}
 
-// Hook đo kích thước container theo thời gian thực
 function useContainerWidth<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   const [width, setWidth] = useState(0);
-
   useEffect(() => {
     if (!ref.current) return;
-    const ro = new ResizeObserver(([entry]) => {
-      setWidth(entry.contentRect.width);
-    });
+    const ro = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width));
     ro.observe(ref.current);
     return () => ro.disconnect();
   }, []);
-
   return { ref, width };
 }
 
-// Hàm clamp tiện dụng
-const clamp = (val: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, val));
+const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
 export default function WhyChooseUs() {
-  // Góc quay chung cho cả quỹ đạo
+  const { t } = useI18n();
   const rotation = useMotionValue(0);
   useEffect(() => {
-    const controls = animate(rotation, 360, {
-      duration: 20,
-      repeat: Infinity,
-      ease: 'linear',
-    });
+    const controls = animate(rotation, 360, { duration: 20, repeat: Infinity, ease: 'linear' });
     return controls.stop;
   }, [rotation]);
 
-  // Đo vùng khung orbit để scale mọi thứ theo container, không theo viewport
   const { ref: orbitWrapRef, width: cw } = useContainerWidth<HTMLDivElement>();
 
-  // Tính toán kích thước theo container width
-  // Bạn có thể điều chỉnh các hệ số để “đậm”/“mảnh” hơn.
   const sizes = useMemo(() => {
-    // Khung cao: 60% chiều rộng, nhưng nằm trong [380, 720] px
-    const sectionHeight = clamp(cw * 0.6, 380, 720);
-
-    // Đường tròn nét đứt ~45% bề rộng container, trong khoảng [360, 680] px
-    const dashedSize = clamp(cw * 0.45, 360, 680);
+    // đường tròn nét đứt (giảm 5%)
+    const dashedSize = clamp(cw * 0.45, 360, 680) * 0.95;
     const orbitRadius = dashedSize / 2;
-
-    // Vòng trung tâm ~58% đường tròn nét đứt, rồi *0.9 (yêu cầu “nhỏ hơn 10%”)
-    const centerBase = dashedSize * 0.58;
-    const centerSize = Math.round(centerBase * 0.9);
-
-    // Planet (icon circle) ~18% đường tròn nét đứt, sau đó +20%
+  
+    const centerSize = Math.round(dashedSize * 0.58 * 0.9); // vòng trung tâm
     const planetBase = dashedSize * 0.18;
     const itemSize = Math.round(planetBase * 1.2);
     const halfItem = itemSize / 2;
-
-    // Typography theo centerSize
+  
+    const safePadding = Math.round(Math.max(12, dashedSize * 0.02));
+    const wrapSize = dashedSize + itemSize + safePadding;
+  
     const titleSize = Math.max(14, Math.round(centerSize * 0.14));
     const bodySize = Math.max(12, Math.round(centerSize * 0.095));
     const pad = Math.round(centerSize * 0.12);
     const contentW = Math.round(centerSize * 0.72);
-
+  
     return {
-      sectionHeight,
       dashedSize,
       orbitRadius,
       centerSize,
       itemSize,
       halfItem,
+      wrapSize,
       titleSize,
       bodySize,
       pad,
       contentW,
     };
   }, [cw]);
+
+  const vals = useValues();
 
   return (
     <section className="py-20 bg-white">
@@ -102,7 +92,7 @@ export default function WhyChooseUs() {
               lineHeight: 1.1,
             }}
           >
-            Why choose us?
+            {t('why_heading')}
             <span
               className="main-heading-shadow"
               style={{
@@ -119,7 +109,7 @@ export default function WhyChooseUs() {
                 lineHeight: 1.1,
               }}
             >
-              Why choose us?
+              {t('why_heading')}
             </span>
           </h2>
         </div>
@@ -127,10 +117,14 @@ export default function WhyChooseUs() {
         {/* Orbit Section */}
         <div
           ref={orbitWrapRef}
-          className="relative mx-auto flex items-center justify-center overflow-hidden"
-          style={{ maxWidth: '100%', height: `${sizes.sectionHeight}px` }}
+          className="relative mx-auto flex items-center justify-center"
+          style={{
+            maxWidth: '100%',
+            height: `${sizes.wrapSize}px`,     // << đủ chỗ cho icon quay
+            overflow: 'visible',               // << không cắt tràn
+          }}
         >
-          {/* Dashed circle quay cùng quỹ đạo */}
+          {/* Dashed circle */}
           <motion.div
             className="absolute rounded-full border-4 border-dashed border-[#53bedd]"
             style={{
@@ -140,15 +134,14 @@ export default function WhyChooseUs() {
             }}
           />
 
-          {/* Container quay: các planet di chuyển trên đường nét đứt */}
+          {/* Planets on orbit */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
             style={{ rotate: rotation }}
           >
-            {values.map((value, index) => {
-              const angle = (index * 360) / values.length; // 0/90/180/270
-              const counter = useTransform(rotation, (r) => -(r + angle)); // giữ icon/text thẳng
-
+            {vals.map((value, index) => {
+              const angle = (index * 360) / vals.length;
+              const counter = useTransform(rotation, (r) => -(r + angle));
               return (
                 <div
                   key={index}
@@ -186,7 +179,7 @@ export default function WhyChooseUs() {
             })}
           </motion.div>
 
-          {/* Center circle (typography theo đường kính) */}
+          {/* Center circle */}
           <div
             className="relative z-10 rounded-full bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] shadow-2xl flex items-center justify-center text-white text-center"
             style={{
@@ -214,7 +207,7 @@ export default function WhyChooseUs() {
                   textShadow: '0 1px 2px rgba(0,0,0,0.25)',
                 }}
               >
-                Growing together
+                {t('why_center_title')}
               </h3>
               <p
                 style={{
@@ -224,7 +217,7 @@ export default function WhyChooseUs() {
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)',
                 }}
               >
-                Building sustainable relationships
+                {t('why_center_desc')}
               </p>
             </div>
           </div>

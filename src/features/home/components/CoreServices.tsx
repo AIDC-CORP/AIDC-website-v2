@@ -1,44 +1,40 @@
 import { Database, Brain, Code, Network } from 'lucide-react';
 import { motion } from 'motion/react';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useI18n } from '../../../App';
 
-const services = [
-  {
-    icon: Database,
-    title: 'Data analysis services, database construction',
-    description: [
-      'We provide comprehensive data analysis services and database construction to help organizations transform raw information into actionable insights.',
-      'Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth.',
+function useServices() {
+  const { t } = useI18n();
+  return useMemo(
+    () => [
+      {
+        icon: Database,
+        title: t('svc1_title'),
+        description: [t('svc1_desc1'), t('svc1_desc2')],
+      },
+      {
+        icon: Brain,
+        title: t('svc2_title'),
+        description: [t('svc2_desc1'), t('svc2_desc2')],
+      },
+      {
+        icon: Code,
+        title: t('svc3_title'),
+        description: [t('svc3_desc1'), t('svc3_desc2'), t('svc3_desc3')],
+      },
+      {
+        icon: Network,
+        title: t('svc4_title'),
+        description: [t('svc4_desc1'), t('svc4_desc2')],
+      },
     ],
-  },
-  {
-    icon: Brain,
-    title: 'Application of new technology services',
-    description: [
-      'We focus on harnessing the power of AI/ML, including computer vision and large language models (LLMs), to deliver intelligent, adaptive solutions.',
-      'We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences.',
-    ],
-  },
-  {
-    icon: Code,
-    title: 'Outsourcing services, software development',
-    description: [
-      'Software development services',
-      'Implement product technology transfer, upgrade product versions',
-      'R&D as per requirements',
-    ],
-  },
-  {
-    icon: Network,
-    title: 'Consulting, integrating comprehensive IT systems',
-    description: [
-      'We offer comprehensive IT systems, covering infrastructure, applications, and data environments.',
-      'Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance.',
-    ],
-  },
-];
+    [t]
+  );
+}
 
 export default function CoreServices() {
+  const { t } = useI18n();
+  const services = useServices();
   return (
     <section id="core-services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -46,10 +42,10 @@ export default function CoreServices() {
             <h2 className="main-heading"
               style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
             >
-            Core services
+            {t('core_heading')}
               <span className="main-heading-shadow"
                 style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-              >Core services</span>
+              >{t('core_heading')}</span>
           </h2>
         </div>
 

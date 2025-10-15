@@ -2,33 +2,23 @@ import React from 'react';
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Search, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useI18n } from '../../App';
 
 const logo = new URL('@/assets/images/logo.png', import.meta.url).href;
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'vn'>('en');
   const location = useLocation();
+  const { language, setLanguage, t } = useI18n();
 
-  const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'About Us', path: '/about' },
-    { label: 'Customers & Partners', path: '/customers' },
-    { label: 'Career Opportunities', path: '/career' },
-    { label: 'Blog', path: 'https://blog.aidccompany.com/', external: true },
-    { label: 'Contact', path: '/contact' },
+  const items = [
+    { label: t('nav_home'), path: '/' },
+    { label: t('nav_about'), path: '/about' },
+    { label: t('nav_customers'), path: '/customers' },
+    { label: t('nav_career'), path: '/career' },
+    { label: t('nav_blog'), path: 'https://blog.aidccompany.com/', external: true },
+    { label: t('nav_contact'), path: '/contact' },
   ];
-
-  const navItemsVN = [
-    { label: 'Trang chủ', path: '/' },
-    { label: 'Về chúng tôi', path: '/about' },
-    { label: 'Khách hàng & Đối tác', path: '/customers' },
-    { label: 'Cơ hội nghề nghiệp', path: '/career' },
-    { label: 'Blog', path: 'https://blog.aidccompany.com/', external: true },
-    { label: 'Liên hệ', path: '/contact' },
-  ];
-
-  const items = language === 'en' ? navItems : navItemsVN;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
@@ -115,7 +105,7 @@ export default function Header() {
               <Search className="w-4 h-4 text-gray-500 mr-2" />
               <input
                 type="text"
-                placeholder={language === 'en' ? 'Search...' : 'Tìm kiếm...'}
+                placeholder={t('search_placeholder')}
                 className="bg-transparent outline-none text-sm w-32"
               />
             </div>

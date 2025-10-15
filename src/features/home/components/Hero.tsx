@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../../../components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useI18n } from '../../../App';
 
 const hpBg = new URL('@/assets/images/hp_bg.jpg', import.meta.url).href;
 const hpItem1 = new URL('@/assets/images/hp_item.png', import.meta.url).href;
@@ -12,6 +13,7 @@ export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
   const aiImages = [hpItem1, hpItem2, hpItem3];
+  const { t } = useI18n();
 
   // Auto-rotate images every 3 seconds
   useEffect(() => {
@@ -47,8 +49,7 @@ export default function Hero() {
               className="text-white mt-8 md:mt-0"
               style={{ fontWeight: 700, fontSize: '2rem', color: '#53bedd'}}
             >
-              AIDC corp. was established with the mission of pioneering in the fields of AI, data,
-              and digital technologies.
+              {t('hero_title')}
             </motion.h1>
 
             <motion.p
@@ -57,10 +58,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-white/90 max-w-3xl mx-auto lg:mx-0"
             >
-              We deliver end-to-end solutions in software development, data analytics, and R&D in
-              AI and AR/VR, enabling businesses to optimize performance and strengthen
-              competitiveness. Innovation and advanced technologies are at the heart of our
-              approach, ensuring sustainable and customized solutions for our clients.
+              {t('hero_desc_1')} {t('hero_desc_2')}
             </motion.p>
 
             <motion.div
@@ -76,14 +74,14 @@ export default function Hero() {
                   element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
               >
-                Our services
+                {t('hero_btn_services')}
               </Button>
               <Button
                 variant="outline"
                 className="bg-white text-[#53bedd] border-white hover:bg-white/90 hover:text-[#53bedd] px-8 py-6 rounded-full"
                 onClick={() => navigate('/contact')}
               >
-                Contact us
+                {t('hero_btn_contact')}
               </Button>
             </motion.div>
           </div>
@@ -97,7 +95,7 @@ export default function Hero() {
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 exit={{ opacity: 0, scale: 0.8, rotateY: 90 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
-                className="hidden md:block w-64 h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl overflow-hidden shadow-2xl"
+                className="hidden md:block w-128 h-128 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl overflow-hidden"
               >
                 <img 
                   src={aiImages[currentImageIndex]} 

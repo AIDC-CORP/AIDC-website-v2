@@ -1,10 +1,12 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../../App';
 
 const logo = new URL('@/assets/images/logo_aidc.png', import.meta.url).href;
 
 export default function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="bg-[#0a2342] text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -13,36 +15,34 @@ export default function Footer() {
           <div className="space-y-4">
             <img src={logo} alt="AIDC Corp" className="h-20 w-auto" />
             <p className="text-white/80 text-sm leading-relaxed">
-              Vietnam AI Technology and Digital Transformation Joint Stock Company - Pioneering in
-              AI, data, and digital technologies to deliver innovative, sustainable solutions for
-              businesses worldwide.
+              {t('footer_desc')}
             </p>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-white mb-4">Quick Links</h4>
+            <h4 className="text-white mb-4">{t('footer_quick_links')}</h4>
             <nav className="flex flex-col gap-3">
               <Link to="/" className="text-white/80 hover:text-[#53bedd] transition-colors text-sm">
-                Home
+                {t('footer_home')}
               </Link>
               <Link
                 to="/about"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
-                About Us
+                {t('footer_about')}
               </Link>
               <Link
                 to="/customers"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
-                Customers & Services
+                {t('footer_customers')}
               </Link>
               <Link
                 to="/career"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
-                Career Opportunities
+                {t('footer_career')}
               </Link>
               <a
                 href="https://blog.aidccompany.com/"
@@ -50,20 +50,20 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
-                Blog
+                {t('footer_blog')}
               </a>
               <Link
                 to="/contact"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >
-                Contact
+                {t('footer_contact')}
               </Link>
             </nav>
           </div>
 
           {/* Column 3: Contact Information */}
           <div>
-            <h4 className="text-white mb-4">Contact Information</h4>
+            <h4 className="text-white mb-4">{t('footer_contact_info')}</h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#53bedd] flex-shrink-0 mt-1" />
@@ -123,7 +123,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-white/60 text-sm">© 2025 AIDC Corp – All rights reserved.</p>
+          <p className="text-white/60 text-sm">© 2025 AIDC Corp – {t('footer_copyright')}</p>
         </div>
       </div>
     </footer>

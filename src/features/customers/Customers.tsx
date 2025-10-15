@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../App';
 
 const y2yLogo = new URL('@/assets/images/y2y.png', import.meta.url).href;
 
-const commitments = [
-  '01. Continuous innovation to deliver outstanding value.',
-  '02. Transparency and trust in every partnership.',
-  "03. Long-term commitment to our customers' sustainable growth.",
-];
+function useCommitments() {
+  const { t } = useI18n();
+  return useMemo(() => [t('com_1'), t('com_2'), t('com_3')], [t]);
+}
 
 // Mock logo URLs - in production, replace with actual partner logos
 const partnerLogos = [
@@ -18,7 +18,9 @@ const partnerLogos = [
 ];
 
 export default function Customers({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
+  const { t } = useI18n();
   const [headerHeight, setHeaderHeight] = useState(headerHeightPx);
+  const commitments = useCommitments();
 
   useEffect(() => {
     const header = document.querySelector<HTMLElement>('#site-header');
@@ -41,11 +43,11 @@ export default function Customers({ headerHeightPx = 60 }: { headerHeightPx?: nu
             <div className="lg:w-1/2 space-y-6">
               <h2 className="text-[#53bedd]"
               style={{ fontSize: '2.3rem', fontWeight: 700, zIndex: 1, position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-              >Customers & Partners</h2>
+              >{t('customers_heading')}</h2>
               <div className="flex items-center gap-4">
                 <h3 className="text-white"
                 style={{ fontSize: '1.5rem', fontWeight: 700, zIndex: 1, position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-                >Our commitment</h3>
+                >{t('customers_commitment')}</h3>
                 <ChevronRight className="w-8 h-8 text-white" />
               </div>
             </div>

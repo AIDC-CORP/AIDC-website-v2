@@ -1,20 +1,24 @@
 import React, { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../../../styles/CoreValues.css";
+import { useI18n } from "../../../App";
 
 type Item = { text: string };
 
-const DATA: Item[] = [
-  { text: "PRACTICE is the criterion to test TRUTH" },
-  { text: "RESPONSIBILITY is our unwavering commitment TO CUSTOMERS" },
-  { text: "CREATIVITY paves the way for BREAKTHROUGH" },
-  { text: "DISCIPLINE builds COLLECTIVE STRENGTH" },
-  { text: "QUALITY is the measure of REPUTATION" },
-  { text: "TRANSPARENCY builds TRUST" },
-  { text: "CONTINUOUS LEARNING so we can GO FURTHER" },
-];
-
 export default function CoreValuesCSS() {
+  const { t } = useI18n();
+  const DATA: Item[] = useMemo(
+    () => [
+      { text: t("cv_1") },
+      { text: t("cv_2") },
+      { text: t("cv_3") },
+      { text: t("cv_4") },
+      { text: t("cv_5") },
+      { text: t("cv_6") },
+      { text: t("cv_7") },
+    ],
+    [t]
+  );
   const [idx, setIdx] = useState(0);
 
   const atFirst = idx === 0;
@@ -35,10 +39,10 @@ export default function CoreValuesCSS() {
         <h2 className="main-heading"
           style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
         >
-          Core values
+          {t('core_values_heading')}
           <span className="main-heading-shadow"
             style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-          >Core values</span>
+          >{t('core_values_heading')}</span>
         </h2>
       </div>
 

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../../App';
 
 const mrTan = new URL('@/assets/images/tan_avatar.jpg', import.meta.url).href;
 const mrQuyet = new URL('@/assets/images/quyet_avatar.jpg', import.meta.url).href;
@@ -7,48 +8,46 @@ const mrToan = new URL('@/assets/images/toan_avatar.jpg', import.meta.url).href;
 const mrCong = new URL('@/assets/images/cong_avatar.jpg', import.meta.url).href;
 const mrDung = new URL('@/assets/images/dung_avatar.jpg', import.meta.url).href;
 
-const directors = [
-  {
-    name: 'Mr. Pham Huy Tan',
-    position: 'Chairman of the Board of Directors & Founder',
-    description:
-      "With strong leadership and a forward-looking vision, Mr. Huy Tan, Chairman of the Board of Directors, plays a pivotal role in guiding Vietnam AI Technology & Digital Transformation JSC toward sustainable growth and long-term success. As the guardian of corporate governance and strategic direction, he ensures that the company operates with transparency, efficiency, and responsibility, while fostering innovation and expanding partnerships. His leadership is instrumental in positioning the company as a trusted partner and a pioneer in the field of AI and digital transformation.",
-    image: mrTan,
-  },
-  {
-    name: 'Mr. Nguyen Tien Cong',
-    position: 'Head of Data Department',
-    description:
-      "Mr. Tien Cong, Head of the Data Department at Vietnam AI Technology & Digital Transformation JSC, plays a pivotal role in defining the company’s data strategy and advancing its data-driven initiatives. He oversees data architecture, analytics, and governance, ensuring the effective utilization of AI and big data to optimize decision-making, enhance operational efficiency, and strengthen the company’s technological leadership.",
-    image: mrCong,
-  },
-  {
-    name: 'Mr. Do Duy Toan',
-    position: 'Head of Software Development & Co-Founder',
-    description:
-      "With solid expertise in software engineering and project management, Mr. Duy Toan plays a key role in leading product development and ensuring the quality of enterprise solutions at Vietnam AI Technology & Digital Transformation JSC. He focuses on building efficient development processes, fostering innovation within the team, and delivering high-performance software solutions that meet the evolving needs of clients.",
-    image: mrToan,
-  },
-  {
-    name: 'Mr. Trinh Van Quyet',
-    position: 'CEO & Co-Founder',
-    description:
-      "With extensive experience in AI Technology and Digital Transformation, Mr. Quyet Trinh plays a strategic role in shaping the company's vision and driving technological growth at Vietnam AI Technology & Digital Transformation JSC. He is the key architect of the company’s core technology values, aiming to position the company as a pioneer in delivering comprehensive and sustainable digital solutions.",
-    image: mrQuyet,
-  },
-  // Người thứ 5
-  {
-    name: 'Mr Le Duc Dung',
-    position: 'Head of AI Department - Co-Founder',
-    description:
-      "Mr. Duc Dung, Deputy Director of the AI Center for Green Agriculture at Vietnam AI Technology & Digital Transformation JSC, plays a central role in applying artificial intelligence to sustainable farming solutions. He leads initiatives in smart automation, environmental monitoring, and CO₂ process optimization, enabling agricultural enterprises to improve productivity, reduce costs, and achieve long-term sustainability. His leadership fosters innovation and positions the company at the forefront of green agriculture transformation.",
-    image: mrDung,
-  },
-];
+function buildDirectors(t: (k: string) => string) {
+  return [
+    {
+      name: t('bod_tan_name'),
+      position: t('bod_tan_position'),
+      description: t('bod_tan_desc'),
+      image: mrTan,
+    },
+    {
+      name: t('bod_cong_name'),
+      position: t('bod_cong_position'),
+      description: t('bod_cong_desc'),
+      image: mrCong,
+    },
+    {
+      name: t('bod_toan_name'),
+      position: t('bod_toan_position'),
+      description: t('bod_toan_desc'),
+      image: mrToan,
+    },
+    {
+      name: t('bod_quyet_name'),
+      position: t('bod_quyet_position'),
+      description: t('bod_quyet_desc'),
+      image: mrQuyet,
+    },
+    {
+      name: t('bod_dung_name'),
+      position: t('bod_dung_position'),
+      description: t('bod_dung_desc'),
+      image: mrDung,
+    },
+  ];
+}
 
 type SlotsMap = Record<number, number>; // key: directorIndex, value: slot 0..3
 
 export default function BoardOfDirectors() {
+  const { t } = useI18n();
+  const directors = buildDirectors(t);
   // Center: mặc định người đầu tiên
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -106,10 +105,10 @@ export default function BoardOfDirectors() {
         <h2 className="main-heading"
           style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
         >
-          Board of directors
+          {t('board_heading')}
           <span className="main-heading-shadow"
             style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-          >Board of directors</span>
+          >{t('board_heading')}</span>
         </h2>
         </div>
 
