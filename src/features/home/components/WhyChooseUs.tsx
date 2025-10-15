@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
     const safePadding = Math.round(Math.max(12, dashedSize * 0.02));
     const wrapSize = dashedSize + itemSize + safePadding;
   
-    const titleSize = Math.max(14, Math.round(centerSize * 0.14));
+    const titleSize = Math.max(13, Math.round(centerSize * 0.13));
     const bodySize = Math.max(12, Math.round(centerSize * 0.095));
     const pad = Math.round(centerSize * 0.12);
     const contentW = Math.round(centerSize * 0.72);
