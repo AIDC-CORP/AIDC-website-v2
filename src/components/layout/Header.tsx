@@ -52,7 +52,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 z-10">
+          <Link to="/" className="flex-shrink-0 z-10" style={{zIndex: 60}}>
             <div className="w-24 h-24 -mb-16 bg-white rounded-lg shadow-md border-2 border-gray-100 flex items-center justify-center p-2">
               <img src={logo} alt="AIDC Corp" className="w-full h-full object-contain" />
             </div>
