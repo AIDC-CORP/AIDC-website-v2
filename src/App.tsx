@@ -109,9 +109,9 @@ const translations: Record<Language, Record<string, string>> = {
     cv_7: 'CONTINUOUS LEARNING so we can GO FURTHER',
     board_heading: 'Board of directors',
     bod_tan_name: 'Mr. Pham Huy Tan',
-    bod_tan_position: 'Chairman of the Board of Directors & Founder',
+    bod_tan_position: 'Chairman & Founder',
     bod_tan_desc:
-      "With strong leadership and a forward-looking vision, Mr. Huy Tan, Chairman of the Board of Directors, plays a pivotal role in guiding Vietnam AI Technology & Digital Transformation JSC toward sustainable growth and long-term success. As the guardian of corporate governance and strategic direction, he ensures that the company operates with transparency, efficiency, and responsibility, while fostering innovation and expanding partnerships. His leadership is instrumental in positioning the company as a trusted partner and a pioneer in the field of AI and digital transformation.",
+      "With strong leadership and a forward-looking vision, Mr. Huy Tan plays a pivotal role in guiding Vietnam AI Technology & Digital Transformation JSC toward sustainable growth and long-term success. As the guardian of corporate governance and strategic direction, he ensures that the company operates with transparency, efficiency, and responsibility, while fostering innovation and expanding partnerships. His leadership is instrumental in positioning the company as a trusted partner and a pioneer in the field of AI and digital transformation.",
     bod_cong_name: 'Mr. Nguyen Tien Cong',
     bod_cong_position: 'Head of Data Department',
     bod_cong_desc:
@@ -232,7 +232,7 @@ const translations: Record<Language, Record<string, string>> = {
     cv_7: 'HỌC HỎI LIÊN TỤC để đi XA HƠN',
     board_heading: 'Ban lãnh đạo',
     bod_tan_name: 'Ông Phạm Huy Tân',
-    bod_tan_position: 'Chủ tịch HĐQT & Nhà sáng lập',
+    bod_tan_position: 'Chủ tịch & Nhà sáng lập',
     bod_tan_desc:
       'Với năng lực lãnh đạo mạnh mẽ và tầm nhìn dài hạn, ông Phạm Huy Tân giữ vai trò dẫn dắt Công ty Cổ phần Công nghệ AI & Chuyển đổi Số Việt Nam hướng tới tăng trưởng bền vững. Ông đảm bảo quản trị minh bạch, hiệu quả và trách nhiệm, đồng thời thúc đẩy đổi mới, mở rộng hợp tác, đưa công ty trở thành đối tác tin cậy và tiên phong trong lĩnh vực AI và chuyển đổi số.',
     bod_cong_name: 'Ông Nguyễn Tiến Công',
