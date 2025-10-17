@@ -1,0 +1,193 @@
+:root{
+    --mv-teal: #53bedd;            /* màu nền thẻ */
+    --mv-teal-deep: #28ADC2;       /* backplate đậm */
+    --mv-pill: #ffffff;            /* nền pill */
+    --mv-text: #ffffff;
+    --mv-shadow: 0 12px 28px rgba(0,0,0,.18);
+    --mv-radius: 22px;
+    --mv-radius-lg: 28px;
+  }
+  
+  /* Section wrapper */
+  .mv-section{
+    padding: clamp(28px, 4vw, 56px) 0;
+  }
+  .mv-container {
+    width: min(1140px, 90vw); /* Giảm từ 1200 -> 1140 */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(20px, 3vw, 36px); /* khoảng cách giữa 2 cột */
+  }
+  
+  /* ------------ LEFT LARGE CARDS ------------- */
+  .mv-card{
+    position: relative;
+    background: var(--mv-teal);
+    color: var(--mv-text);
+    border-radius: var(--mv-radius-lg);
+    box-shadow: var(--mv-shadow);
+    padding: clamp(16px, 2.8vw, 26px) clamp(16px, 2.8vw, 28px);
+    overflow: hidden;
+  }
+  .mv-card--lg{
+    min-height: 200px;
+  }
+  
+  .mv-pill{
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    background: var(--mv-pill);
+    color: #2a6f71;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+  }
+  .mv-card-body{ margin-top: 36px; }
+  
+  .mv-title{
+    font-weight: 800;
+    line-height: 1.35;
+    font-size: clamp(15px, 2vw, 23px);
+    margin: 6px 0 10px;
+  }
+  .mv-desc{
+    opacity: .95;
+    font-size: clamp(13px, 1.3vw, 15px);
+  }
+  .mv-desc--en{ font-style: italic; }
+  
+  /* ------------ RIGHT SPEECH CARDS ------------- */
+  .mv-right {
+    display: grid;
+    gap: clamp(28px, 3vw, 40px); /* tăng từ 16–24px lên 28–40px */
+    align-content: start;
+  }
+  
+  .mv-speech{
+    position: relative;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .mv-backplate {
+    position: absolute;
+    inset: 0;
+    transform: translate(-6px, -8px) rotate(-5deg); /* Giảm xoay & dịch nhẹ hơn */
+    border-radius: var(--mv-radius);
+    background: var(--mv-teal-deep);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18));
+    transition: transform 0.3s ease;
+  }
+  .mv-backplate--1 {
+    transform: translate(-4px, -6px) rotate(-3.5deg);
+  }
+  
+  .mv-backplate--2 {
+    transform: translate(6px, -3px) rotate(3.5deg);
+  }
+  
+  .mv-backplate--3 {
+    transform: translate(-5px, 4px) rotate(-3.5deg);
+  }
+  /* .mv-speech:hover .mv-backplate {
+    transform: scale(1.02) translate(0, 0) rotate(0deg);
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.22));
+  } */
+  
+  .mv-speech-inner{
+    position: relative;
+    background: var(--mv-teal);
+    color: var(--mv-text);
+    border-radius: var(--mv-radius);
+    padding: clamp(16px, 2.2vw, 24px);
+    box-shadow: var(--mv-shadow);
+    overflow: hidden;
+  }
+  
+  /* pill trắng ở top-center */
+  .mv-pill--white{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #2a6f71;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+  }
+  
+  /* dấu ngoặc kép */
+  .mv-quote {
+    position: absolute;
+    width: 26px;              /* tuỳ chỉnh kích thước, thử 24–30px cho cân */
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+    user-select: none;
+    filter: brightness(0) invert(1);
+  }
+  .mv-quote--open {
+    top: 30px;
+    left: 16px;
+  }
+  
+  .mv-quote--close {
+    bottom: 12px;
+    right: 16px;
+  }
+  
+  .mv-speech-text{
+    font-size: clamp(13px, 1.4vw, 15px);
+    margin-top: 44px;
+    line-height: 1.6;
+    padding-right: 8px;
+  }
+  
+  /* --------- LAYOUT --------- */
+  .mv-left{
+    margin-top: 70px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px;
+  }
+  
+  /* --------- RESPONSIVE --------- */
+  @media (max-width: 1024px){
+    .mv-container{
+      grid-template-columns: 1fr;
+    }
+    .mv-right{ margin-top: 8px; }
+    .mv-pill,
+    .mv-pill--white{ font-size: 13px; padding: 7px 14px; }
+    .mv-title{ font-size: clamp(18px, 2.6vw, 24px); }
+    .mv-quote{ font-size: 34px; }
+    
+  }
+  @media (max-width: 768px) {
+    .mv-card,
+    .mv-speech-inner {
+      transform: scale(0.95);
+      transform-origin: top center;
+    }
+    
+    /* Remove rotation on mobile */
+    .mv-speech{
+      transform: none !important;
+    }
+  }
+  @media (max-width: 640px){
+    .mv-section{ padding: 22px 0; }
+    .mv-container{ width: 92vw; }
+    .mv-title{ font-size: 18px; }
+    .mv-speech-text,
+    .mv-desc{ font-size: 14px; }
+    .mv-quote{ font-size: 30px; }
+  }
+  

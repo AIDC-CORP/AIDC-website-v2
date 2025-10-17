@@ -129,6 +129,25 @@ const translations: Record<Language, Record<string, string>> = {
     bod_dung_desc:
       'Mr. Duc Dung, Deputy Director of the AI Center for Green Agriculture at Vietnam AI Technology & Digital Transformation JSC, plays a central role in applying artificial intelligence to sustainable farming solutions. He leads initiatives in smart automation, environmental monitoring, and CO₂ process optimization, enabling agricultural enterprises to improve productivity, reduce costs, and achieve long-term sustainability. His leadership fosters innovation and positions the company at the forefront of green agriculture transformation.',
 
+    // Mission & Vision
+    mission_vision_heading: 'Intelligent Foundations',
+    philosophy_label: 'Philosophy of Action',
+    philosophy_title: 'Do it right – Understand deeply – Innovate constantly.',
+    philosophy_desc:
+      'Every product of AIDC Corp. must deliver real value, be validated through measurable results, and be continuously refined through learning and innovation.',
+    brand_message_label: 'Brand Message',
+    brand_message_title: 'Practice builds intelligence – Intelligence shapes the future.',
+    brand_message_english: '(Practical Intelligence for a Smarter Future)',
+    mission_label: 'Mission',
+    mission_content:
+      'To create practical artificial intelligence and digital transformation solutions that foster sustainable growth for businesses and society through creativity, responsibility, and quality.',
+    vision_label: 'Vision',
+    vision_content:
+      'To become a pioneering enterprise in artificial intelligence and digital transformation in Vietnam, reaching the regional level – where technology is applied practically to create meaningful value for people and society.',
+    brand_spirit_label: 'Brand Spirit',
+    brand_spirit_content:
+      'Dare to think and act, stay disciplined, put customers at the center, and keep learning to go further.',
+
     // Footer
     footer_desc:
       'Vietnam AI Technology and Digital Transformation Joint Stock Company - Pioneering in AI, data, and digital technologies to deliver innovative, sustainable solutions for businesses worldwide.',
@@ -251,6 +270,21 @@ const translations: Record<Language, Record<string, string>> = {
     bod_dung_position: 'Trưởng bộ phận AI - Đồng sáng lập',
     bod_dung_desc:
       'Ông Lê Đức Dũng phụ trách các sáng kiến AI trong nông nghiệp xanh: tự động hóa thông minh, giám sát môi trường và tối ưu quy trình CO₂, giúp doanh nghiệp nông nghiệp nâng cao năng suất, giảm chi phí và phát triển bền vững. Vai trò của ông góp phần thúc đẩy đổi mới và đưa công ty dẫn đầu trong chuyển đổi nông nghiệp xanh.',
+
+    // Mission & Vision
+    mission_vision_heading: 'Nền tảng trí tuệ',
+    philosophy_label: 'Tư duy hành động',
+    philosophy_title: 'Làm thật – Hiểu sâu – Đổi mới không ngừng.',
+    philosophy_desc: 'Mọi sản phẩm của AIDC Corp. phải mang giá trị thực, được kiểm chứng bằng kết quả, và liên tục được hoàn thiện qua học hỏi và sáng tạo.',
+    brand_message_label: 'Thông điệp thương hiệu',
+    brand_message_title: 'Thực tiễn tạo nên trí tuệ – Trí tuệ kiến tạo tương lai.',
+    brand_message_english: '(Practical Intelligence for a Smarter Future)',
+    mission_label: 'Sứ mệnh',
+    mission_content: 'Kiến tạo các giải pháp trí tuệ nhân tạo và chuyển đổi số mang tính thực tiễn, giúp doanh nghiệp và xã hội phát triển bền vững thông qua sáng tạo, trách nhiệm và chất lượng.',
+    vision_label: 'Tầm nhìn',
+    vision_content: 'Trở thành doanh nghiệp tiên phong về trí tuệ nhân tạo và chuyển đổi số tại Việt Nam, vươn tầm khu vực – nơi công nghệ được ứng dụng thực tiễn để kiến tạo giá trị cho con người và xã hội.',
+    brand_spirit_label: 'Tinh thần thương hiệu',
+    brand_spirit_content: 'Dám nghĩ dám làm, hành động có kỷ luật, lấy khách hàng làm trung tâm, không ngừng học hỏi để đi xa hơn.',
 
     // Footer
     footer_desc:

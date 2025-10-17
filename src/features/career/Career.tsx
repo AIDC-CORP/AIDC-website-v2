@@ -115,7 +115,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
       {/* Section 1 - Header with Filters */}
       <section className="py-20 bg-[#0a2342]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
+          <div className="text-center mb-12 space-y-4 pt-16">
             <h1 className="text-[#53bedd]">GROW WITH US, SUCCEED WITH US</h1>
             <p className="text-white/90 max-w-3xl mx-auto">
               Explore career opportunities with us. Check out our open positions and apply to join
