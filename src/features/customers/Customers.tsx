@@ -4,6 +4,10 @@ import { motion } from 'motion/react';
 import { useI18n } from '../../App';
 
 const y2yLogo = new URL('@/assets/images/y2y.png', import.meta.url).href;
+const ttcLogo = new URL('@/assets/images/logo-ttc-removebg.png', import.meta.url).href;
+const aloLogo = new URL('@/assets/images/alo-logo.png', import.meta.url).href;
+const dieuphuongLogo = new URL('@/assets/images/dieuphuong-logo.png', import.meta.url).href;
+const par5Logo = new URL('@/assets/images/par5.png', import.meta.url).href;
 
 function useCommitments() {
   const { t } = useI18n();
@@ -13,8 +17,10 @@ function useCommitments() {
 // Mock logo URLs - in production, replace with actual partner logos
 const partnerLogos = [
   y2yLogo,
-  'https://images.unsplash.com/photo-1599658880436-c61792e70672?w=200&h=100&fit=crop',
-  'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=200&h=100&fit=crop',
+  ttcLogo,
+  aloLogo,
+  dieuphuongLogo,
+  par5Logo,
 ];
 
 export default function Customers({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
