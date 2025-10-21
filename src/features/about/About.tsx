@@ -6,7 +6,7 @@ import MissionVision from './components/Mission&Vision';
 
 export default function About() {
   return (
-    <div className="pt-32">
+    <div>
       <AboutIntro />
       <BoardOfDirectors />
       <CoreValues />
