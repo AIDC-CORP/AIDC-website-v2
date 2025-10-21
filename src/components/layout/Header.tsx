@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, Search, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../App';
+import '../../styles/Home.css';
 
 const logo = new URL('@/assets/images/logo.png', import.meta.url).href;
 
@@ -21,7 +22,22 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <header 
+      className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        backgroundColor: 'white',
+        width: '100%',
+        maxWidth: '100vw',
+        display: 'block',
+        visibility: 'visible',
+        opacity: 1
+      }}
+    >
       {isMenuOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/30"
@@ -29,8 +45,24 @@ export default function Header() {
         />
       )}
       {/* Header Top */}
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto px-4 py-2">
+      <div 
+        className="bg-gray-50 border-b border-gray-200"
+        style={{
+          backgroundColor: '#f9fafb',
+          display: 'block',
+          visibility: 'visible',
+          opacity: 1
+        }}
+      >
+        <div 
+          className="container mx-auto px-4 py-2"
+          style={{
+            maxWidth: '100%',
+            overflowX: 'hidden',
+            display: 'block',
+            visibility: 'visible'
+          }}
+        >
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
@@ -49,11 +81,26 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div 
+        className="container mx-auto px-4"
+        style={{
+          maxWidth: '100%',
+          overflowX: 'hidden',
+          display: 'block',
+          visibility: 'visible'
+        }}
+      >
+        <div 
+          className="flex items-center justify-between h-20"
+          style={{
+            display: 'flex',
+            visibility: 'visible',
+            opacity: 1
+          }}
+        >
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 z-10" style={{zIndex: 60}}>
-            <div className="w-24 h-24 -mb-16 bg-white rounded-lg shadow-md border-2 border-gray-100 flex items-center justify-center p-2">
+            <div className="w-16 h-16 flex items-center justify-center">
               <img src={logo} alt="AIDC Corp" className="w-full h-full object-contain" />
             </div>
           </Link>
@@ -145,8 +192,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200 relative z-50">
+      <div className={`lg:hidden bg-white border-t border-gray-200 relative z-50 ${isMenuOpen ? 'mobile-menu-open' : 'mobile-menu-closed'}`}>
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4 items-center">
             {items.map((item) => {
               const isActive = location.pathname === item.path;
@@ -182,7 +228,6 @@ export default function Header() {
             })}
           </nav>
         </div>
-      )}
     </header>
   );
 }

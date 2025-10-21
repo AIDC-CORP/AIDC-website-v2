@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../../../components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { useI18n } from '../../../App';
+import '../../../styles/Home.css';
 
 const hpBg = new URL('@/assets/images/hp_bg.jpg', import.meta.url).href;
 const hpItem1 = new URL('@/assets/images/hp_item.png', import.meta.url).href;
@@ -25,28 +26,28 @@ export default function Hero() {
   }, [aiImages.length]);
 
   return (
-    <section className="relative h-screen min-h-[600px] pt-32 md:pt-0 overflow-hidden">
+    <section className="hero-section">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="hero-background">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="hero-bg-image"
           style={{
             backgroundImage: `url('${hpBg}')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2342]/90 via-[#53bedd]/40 to-[#0a2342]/80" />
+        <div className="hero-overlay" />
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 lg:px-8 xl:px-12 h-full relative z-10 mt-8 md:mt-0">
-        <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-8 lg:gap-12 xl:gap-16 pt-8 md:pt-0">
+      <div className="hero-container">
+        <div className="hero-content">
           {/* Left Content - 70% */}
-          <div className="flex-1 lg:w-[65%] xl:w-[70%] text-white space-y-6 text-center lg:text-left">
+          <div className="hero-left">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-white mt-8 md:mt-0"
+              className="hero-title"
               style={{ fontWeight: 700, fontSize: '2rem', color: '#53bedd'}}
             >
               {t('hero_title')}
@@ -56,7 +57,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white/90 max-w-3xl mx-auto lg:mx-0"
+              className="hero-description"
             >
               {t('hero_desc_1')} {t('hero_desc_2')}
             </motion.p>
@@ -65,10 +66,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
+              className="hero-buttons"
             >
               <Button 
-                className="bg-[#53bedd] text-white hover:bg-[#53bedd]/90 px-8 py-6 rounded-full"
+                className="hero-btn-primary"
                 onClick={() => {
                   const element = document.getElementById('core-services');
                   element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -78,7 +79,7 @@ export default function Hero() {
               </Button>
               <Button
                 variant="outline"
-                className="bg-white text-[#53bedd] border-white hover:bg-white/90 hover:text-[#53bedd] px-8 py-6 rounded-full"
+                className="hero-btn-secondary"
                 onClick={() => navigate('/contact')}
               >
                 {t('hero_btn_contact')}
@@ -87,7 +88,7 @@ export default function Hero() {
           </div>
 
           {/* Right Content - 30% AI Images */}
-          <div className="lg:w-[35%] xl:w-[30%] flex items-center justify-center">
+          <div className="hero-right">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
@@ -95,12 +96,12 @@ export default function Hero() {
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 exit={{ opacity: 0, scale: 0.8, rotateY: 90 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
-                className="hidden md:block w-128 h-128 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl overflow-hidden"
+                className="hero-image"
               >
                 <img 
                   src={aiImages[currentImageIndex]} 
                   alt={`AI Technology ${currentImageIndex + 1}`} 
-                  className="w-full h-full object-cover" 
+                  className="hero-img" 
                 />
               </motion.div>
             </AnimatePresence>

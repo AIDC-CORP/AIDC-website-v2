@@ -75,10 +75,10 @@ export default function WhyChooseUs() {
   const vals = useValues();
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="why-choose-section">
+      <div className="container-responsive">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="why-choose-header">
           <h2
             className="main-heading"
             style={{
@@ -117,7 +117,7 @@ export default function WhyChooseUs() {
         {/* Orbit Section */}
         <div
           ref={orbitWrapRef}
-          className="relative mx-auto flex items-center justify-center"
+          className="orbit-container"
           style={{
             maxWidth: '100%',
             height: `${sizes.wrapSize}px`,     // << đủ chỗ cho icon quay
@@ -126,7 +126,7 @@ export default function WhyChooseUs() {
         >
           {/* Dashed circle */}
           <motion.div
-            className="absolute rounded-full border-4 border-dashed border-[#53bedd]"
+            className="orbit-dashed"
             style={{
               width: sizes.dashedSize,
               height: sizes.dashedSize,
@@ -136,7 +136,7 @@ export default function WhyChooseUs() {
 
           {/* Planets on orbit */}
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
+            className="orbit-planets"
             style={{ rotate: rotation }}
           >
             {vals.map((value, index) => {
@@ -145,14 +145,14 @@ export default function WhyChooseUs() {
               return (
                 <div
                   key={index}
-                  className="absolute left-1/2 top-1/2"
+                  className="orbit-item"
                   style={{
                     transform: `rotate(${angle}deg) translateY(-${sizes.orbitRadius}px)`,
                     transformOrigin: '0 0',
                   }}
                 >
                   <motion.div
-                    className="rounded-full bg-white shadow-xl flex flex-col items-center justify-center border-4 border-[#53bedd]"
+                    className="orbit-planet"
                     style={{
                       width: sizes.itemSize,
                       height: sizes.itemSize,
@@ -164,13 +164,13 @@ export default function WhyChooseUs() {
                     }}
                   >
                     <value.icon
-                      className="text-[#53bedd] mb-1"
+                      className="orbit-icon"
                       style={{
                         width: sizes.itemSize * 0.33,
                         height: sizes.itemSize * 0.33,
                       }}
                     />
-                    <span className="text-xs text-gray-700 text-center px-2">
+                    <span className="orbit-text">
                       {value.title}
                     </span>
                   </motion.div>
@@ -181,7 +181,7 @@ export default function WhyChooseUs() {
 
           {/* Center circle */}
           <div
-            className="relative z-10 rounded-full bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] shadow-2xl flex items-center justify-center text-white text-center"
+            className="orbit-center"
             style={{
               width: sizes.centerSize,
               height: sizes.centerSize,
@@ -191,6 +191,7 @@ export default function WhyChooseUs() {
             }}
           >
             <div
+              className="orbit-center-content"
               style={{
                 maxWidth: sizes.contentW,
                 margin: '0 auto',
@@ -199,6 +200,7 @@ export default function WhyChooseUs() {
               }}
             >
               <h3
+                className="orbit-center-title"
                 style={{
                   fontSize: sizes.titleSize,
                   fontWeight: 800,
@@ -210,6 +212,7 @@ export default function WhyChooseUs() {
                 {t('why_center_title')}
               </h3>
               <p
+                className="orbit-center-description"
                 style={{
                   fontSize: sizes.bodySize,
                   lineHeight: 1.35,

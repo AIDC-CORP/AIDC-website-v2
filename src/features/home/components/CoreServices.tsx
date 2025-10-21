@@ -36,9 +36,9 @@ export default function CoreServices() {
   const { t } = useI18n();
   const services = useServices();
   return (
-    <section id="core-services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+    <section id="core-services" className="core-services-section">
+      <div className="container-responsive">
+          <div className="core-services-header">
             <h2 className="main-heading"
               style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
             >
@@ -49,7 +49,7 @@ export default function CoreServices() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="core-services-grid">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}
@@ -59,12 +59,19 @@ export default function CoreServices() {
   );
 }
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ service, index }: { 
+  service: {
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    description: string[];
+  }; 
+  index: number 
+}) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <motion.div
-      className="h-80 perspective-1000"
+      className="service-card"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       initial={{ opacity: 0, y: 50 }}
@@ -73,34 +80,25 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <motion.div
-        className="relative w-full h-full preserve-3d"
+        className="service-card-inner"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6 }}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Front Face */}
-        <div
-          className="absolute inset-0 bg-[#53bedd] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 backface-hidden"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <service.icon className="w-16 h-16 text-white mb-4" />
-          <h3 className="text-white text-center">{service.title}</h3>
+        <div className="service-card-front">
+          <service.icon className="service-icon" />
+          <h3 className="service-title">{service.title}</h3>
         </div>
 
         {/* Back Face */}
-        <div
-          className="absolute inset-0 bg-white rounded-2xl shadow-lg p-6 backface-hidden border-2 border-[#53bedd]"
-          style={{
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-          }}
-        >
-          <div className="h-full flex flex-col justify-center">
-            <h4 className="text-[#53bedd] mb-4 text-center">{service.title}</h4>
-            <ul className="space-y-2 text-sm text-gray-700">
+        <div className="service-card-back">
+          <div className="service-card-content">
+            <h4 className="service-back-title">{service.title}</h4>
+            <ul className="service-description-list">
               {service.description.map((desc, i) => (
-                <li key={i} className="flex items-start">
-                  <span className="text-[#53bedd] mr-2">•</span>
+                <li key={i} className="service-description-item">
+                  <span className="service-bullet">•</span>
                   <span>{desc}</span>
                 </li>
               ))}
