@@ -109,7 +109,7 @@ const translations: Record<Language, Record<string, string>> = {
     cv_7: 'CONTINUOUS LEARNING so we can GO FURTHER',
     board_heading: 'Board of directors',
     bod_tan_name: 'Mr. Pham Huy Tan',
-    bod_tan_position: 'Chairman & Founder',
+    bod_tan_position: 'CEO & Founder',
     bod_tan_desc:
       "With strong leadership and a forward-looking vision, Mr. Huy Tan plays a pivotal role in guiding Vietnam AI Technology & Digital Transformation JSC toward sustainable growth and long-term success. As the guardian of corporate governance and strategic direction, he ensures that the company operates with transparency, efficiency, and responsibility, while fostering innovation and expanding partnerships. His leadership is instrumental in positioning the company as a trusted partner and a pioneer in the field of AI and digital transformation.",
     bod_cong_name: 'Mr. Nguyen Tien Cong',
@@ -121,7 +121,7 @@ const translations: Record<Language, Record<string, string>> = {
     bod_toan_desc:
       'With solid expertise in software engineering and project management, Mr. Duy Toan plays a key role in leading product development and ensuring the quality of enterprise solutions at Vietnam AI Technology & Digital Transformation JSC. He focuses on building efficient development processes, fostering innovation within the team, and delivering high-performance software solutions that meet the evolving needs of clients.',
     bod_quyet_name: 'Mr. Trinh Van Quyet',
-    bod_quyet_position: 'CEO & Co-Founder',
+    bod_quyet_position: 'Director & Co-Founder',
     bod_quyet_desc:
       "With extensive experience in AI Technology and Digital Transformation, Mr. Quyet Trinh plays a strategic role in shaping the company's vision and driving technological growth at Vietnam AI Technology & Digital Transformation JSC. He is the key architect of the company’s core technology values, aiming to position the company as a pioneer in delivering comprehensive and sustainable digital solutions.",
     bod_dung_name: 'Mr Le Duc Dung',
@@ -251,7 +251,7 @@ const translations: Record<Language, Record<string, string>> = {
     cv_7: 'HỌC HỎI LIÊN TỤC để đi XA HƠN',
     board_heading: 'Ban lãnh đạo',
     bod_tan_name: 'Ông Phạm Huy Tân',
-    bod_tan_position: 'Chủ tịch & Nhà sáng lập',
+    bod_tan_position: 'Tổng giám đốc & Nhà sáng lập',
     bod_tan_desc:
       'Với năng lực lãnh đạo mạnh mẽ và tầm nhìn dài hạn, ông Phạm Huy Tân giữ vai trò dẫn dắt Công ty Cổ phần Công nghệ AI & Chuyển đổi Số Việt Nam hướng tới tăng trưởng bền vững. Ông đảm bảo quản trị minh bạch, hiệu quả và trách nhiệm, đồng thời thúc đẩy đổi mới, mở rộng hợp tác, đưa công ty trở thành đối tác tin cậy và tiên phong trong lĩnh vực AI và chuyển đổi số.',
     bod_cong_name: 'Ông Nguyễn Tiến Công',
@@ -263,7 +263,7 @@ const translations: Record<Language, Record<string, string>> = {
     bod_toan_desc:
       'Với chuyên môn vững vàng về kỹ thuật phần mềm và quản lý dự án, ông ĐỗĐỗ Duy Toàn dẫn dắt phát triển sản phẩm và đảm bảo chất lượng các giải pháp doanh nghiệp. Ông tập trung xây dựng quy trình phát triển hiệu quả, thúc đẩy đổi mới và cung cấp giải pháp phần mềm hiệu năng cao đáp ứng nhu cầu khách hàng.',
     bod_quyet_name: 'Ông Trịnh Văn Quyết',
-    bod_quyet_position: 'Tổng Giám đốc & Đồng sáng lập',
+    bod_quyet_position: 'Giám đốc & Đồng sáng lập',
     bod_quyet_desc:
       'Với kinh nghiệm sâu rộng trong công nghệ AI và chuyển đổi số, ông Trịnh Văn Quyết giữ vai trò chiến lược trong việc định hình tầm nhìn và thúc đẩy tăng trưởng công nghệ của công ty. Ông là kiến trúc sư của các giá trị công nghệ cốt lõi, định vị công ty tiên phong cung cấp giải pháp số toàn diện và bền vững.',
     bod_dung_name: 'Ông Lê Đức Dũng',
