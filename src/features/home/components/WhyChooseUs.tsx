@@ -121,7 +121,7 @@ export default function WhyChooseUs() {
           style={{
             maxWidth: '100%',
             height: `${sizes.wrapSize}px`,     // << đủ chỗ cho icon quay
-            overflow: 'visible',               // << không cắt tràn
+            overflow: 'hidden',               // << không cắt tràn
           }}
         >
           {/* Dashed circle */}

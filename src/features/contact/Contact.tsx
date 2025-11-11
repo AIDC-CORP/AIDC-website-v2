@@ -1,16 +1,29 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { Input } from '../../components/ui/input';
-import { Textarea } from '../../components/ui/textarea';
-import { Button } from '../../components/ui/button';
 import { useI18n } from '../../App';
+import FormSection from './components/FormSection';
+import MapSection from './components/MapSection';
 
 export default function Contact() {
   const { t } = useI18n();
   return (
-    <div className="pt-32 pb-20 bg-gray-50">
-      <div className="container mx-auto px-4 pt-16">
-        <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div style={{ paddingTop: '110px' }} className="pb-20">
+      {/* Section 1 - Dark Background */}
+      <section className="py-20 bg-[#0a2342]">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4">
+            <h1 className="text-[#53bedd]">{t('contact_heading')}</h1>
+            <p className="text-white/90 max-w-3xl mx-auto">
+              {t('contact_intro')}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 - Contact Form & Info */}
+      <div className="bg-gray-50">
+        <div className="container mx-auto px-4 pt-16">
+          <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left - Contact Info */}
             <div className="bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] p-12 text-white">
@@ -63,56 +76,14 @@ export default function Contact() {
             </div>
 
             {/* Right - Contact Form */}
-            <div className="p-12">
-              <form className="space-y-6">
-                <div>
-                  <Input
-                    type="text"
-                    placeholder={t('contact_name')}
-                    className="border-2 border-gray-200 focus:border-[#53bedd]"
-                  />
-                </div>
-
-                <div>
-                  <Input
-                    type="email"
-                    placeholder={t('contact_email_ph')}
-                    className="border-2 border-gray-200 focus:border-[#53bedd]"
-                  />
-                </div>
-
-                <div>
-                  <Input
-                    type="text"
-                    placeholder={t('contact_org')}
-                    className="border-2 border-gray-200 focus:border-[#53bedd]"
-                  />
-                </div>
-
-                <div>
-                  <Input
-                    type="text"
-                    placeholder={t('contact_subject')}
-                    className="border-2 border-gray-200 focus:border-[#53bedd]"
-                  />
-                </div>
-
-                <div>
-                  <Textarea
-                    placeholder="Your message"
-                    rows={6}
-                    className="border-2 border-gray-200 focus:border-[#53bedd] resize-none"
-                  />
-                </div>
-
-                <Button className="w-full bg-[#53bedd] hover:bg-[#53bedd]/90 py-6">
-                  {t('contact_send')}
-                </Button>
-              </form>
-            </div>
+            <FormSection />
+          </div>
           </div>
         </div>
       </div>
+
+      {/* Section 3 - Map Section */}
+      <MapSection />
     </div>
   );
 }
