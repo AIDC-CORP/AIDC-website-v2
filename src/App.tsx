@@ -94,6 +94,20 @@ const translations: Record<Language, Record<string, string>> = {
     contact_message: 'Your message',
     contact_send: 'Send Message',
 
+    // Map Section
+    map_section_title: 'Our Location',
+    map_company_name: 'Vietnam AI Technology and Digital Transformation Joint Stock Company',
+    map_company_desc: 'Specializing in comprehensive AI and digital transformation solutions, from software development to advanced technology implementation.',
+    map_phone_label: '📞 Phone:',
+    map_email_label: '✉️ Email:',
+    map_address_label: '📍 Address:',
+    map_hours_label: '🕐 Working Hours:',
+    map_phone_value: '+84 865903798',
+    map_email_value: 'contact@aidccompany.com',
+    map_address_value: 'Hanoi, Vietnam',
+    map_hours_value: 'Mon - Sat: 8:30 - 17:30',
+    map_open_google_maps: 'Open in Google Maps',
+
     // About
     about_title: 'About us',
     about_intro:
@@ -235,6 +249,20 @@ const translations: Record<Language, Record<string, string>> = {
     contact_subject: 'Tiêu đề',
     contact_message: 'Nội dung liên hệ',
     contact_send: 'Gửi tin nhắn',
+
+    // Map Section
+    map_section_title: 'Vị trí của chúng tôi',
+    map_company_name: 'Công ty Cổ phần Công nghệ AI và Chuyển đổi Số Việt Nam',
+    map_company_desc: 'Chuyên cung cấp giải pháp AI và chuyển đổi số toàn diện, từ phát triển phần mềm đến triển khai công nghệ tiên tiến.',
+    map_phone_label: '📞 Điện thoại:',
+    map_email_label: '✉️ Email:',
+    map_address_label: '📍 Địa chỉ:',
+    map_hours_label: '🕐 Giờ làm việc:',
+    map_phone_value: '+84 865903798',
+    map_email_value: 'contact@aidccompany.com',
+    map_address_value: 'Hà Nội, Việt Nam',
+    map_hours_value: 'Thứ Hai - Thứ Bảy: 8:00 - 17:00',
+    map_open_google_maps: 'Mở trong Google Maps',
 
     // About
     about_title: 'Về chúng tôi',

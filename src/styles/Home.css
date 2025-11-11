@@ -389,6 +389,7 @@ header .container {
 .why-choose-section {
   padding: 5rem 0;
   background-color: white;
+  overflow: hidden;
 }
 
 .orbit-container {
@@ -397,7 +398,7 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .orbit-dashed {
