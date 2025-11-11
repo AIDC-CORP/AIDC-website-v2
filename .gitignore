@@ -44,4 +44,6 @@ coverage/
 *.tmp
 *.temp
 .cache/
+.copilot instruction
+.copilot/
 

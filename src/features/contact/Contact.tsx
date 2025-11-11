@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { motion } from 'motion/react';
 import { useI18n } from '../../App';
 import FormSection from './components/FormSection';
 import MapSection from './components/MapSection';
@@ -9,24 +10,51 @@ export default function Contact() {
   return (
     <div style={{ paddingTop: '110px' }} className="pb-20">
       {/* Section 1 - Dark Background */}
-      <section className="py-20 bg-[#0a2342]">
+      <motion.section 
+        className="py-20 bg-[#0a2342]"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4">
-            <h1 className="text-[#53bedd]">{t('contact_heading')}</h1>
-            <p className="text-white/90 max-w-3xl mx-auto">
+            <motion.h1 
+              className="text-[#53bedd]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {t('contact_heading')}
+            </motion.h1>
+            <motion.p 
+              className="text-white/90 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               {t('contact_intro')}
-            </p>
+            </motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Section 2 - Contact Form & Info */}
-      <div className="bg-gray-50">
+      <motion.div 
+        className="bg-gray-50"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
         <div className="container mx-auto px-4 pt-16">
           <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left - Contact Info */}
-            <div className="bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] p-12 text-white">
+            <motion.div 
+              className="bg-gradient-to-br from-[#53bedd] to-[#2a9cbd] p-12 text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
               <h2 className="text-white mb-4">{t('contact_heading')}</h2>
               <p className="text-white/90 mb-12">{t('contact_intro')}</p>
 
@@ -73,17 +101,29 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right - Contact Form */}
-            <FormSection />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <FormSection />
+            </motion.div>
           </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Section 3 - Map Section */}
-      <MapSection />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+      >
+        <MapSection />
+      </motion.div>
     </div>
   );
 }
