@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../../../styles/CoreValues.css";
 import { useI18n } from "../../../shared/hooks/useI18n";
 
 
@@ -28,59 +27,235 @@ export default function CoreValuesCSS() {
   const next = () => !atLast && setIdx((p) => p + 1);
   const prev = () => !atFirst && setIdx((p) => p - 1);
 
-  // (Nếu bạn muốn vòng lặp vô hạn, bỏ atFirst/atLast và dùng:
-  // setIdx((p) => (p + 1) % DATA.length) / setIdx((p) => (p - 1 + DATA.length) % DATA.length)
-  // nhưng với “track trượt” kiểu này thì phiên bản hữu hạn cho bố cục tự nhiên nhất.)
-
   const styleIdx = useMemo(() => ({ ["--idx" as any]: String(idx) }), [idx]);
 
   return (
-    <section className="core-value">
-      <div className="text-center mb-16">
-        <h2 className="main-heading"
-          style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+    <>
+      <style>{`
+        .core-carousel-responsive {
+          --slideW: clamp(220px, 35vw, 360px);
+          --gap: clamp(16px, 4vw, 48px);
+          --sideScale: 0.72;
+          --centerLift: 0px;
+        }
+        .circles-track-animated {
+          transform: translateX(calc((var(--slideW) + var(--gap)) * var(--idx) * -1));
+          transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1);
+          will-change: transform;
+        }
+        .circle-animated {
+          --sc: var(--sideScale);
+          --ty: 10px;
+          transform: translateY(var(--ty)) scale(var(--sc));
+          opacity: 0.85;
+          transition:
+            transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1),
+            opacity 0.65s cubic-bezier(0.22, 0.8, 0.24, 1);
+        }
+        .slide-active .circle-animated {
+          --sc: 1;
+          --ty: var(--centerLift);
+          opacity: 1;
+        }
+      `}</style>
+      <section 
+        style={{
+          padding: '70px 0 40px 0',
+          overflowX: 'hidden'
+        }}
+      >
+        <div 
+          style={{
+            textAlign: 'center',
+            marginBottom: '4rem'
+          }}
         >
-          {t('core_values_heading')}
-          <span className="main-heading-shadow"
-            style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-          >{t('core_values_heading')}</span>
-        </h2>
-      </div>
-
-      <div className="core-carousel">
-        <button
-          className="nav-arrow left"
-          onClick={prev}
-          disabled={atFirst}
-          aria-label="Prev"
-        >
-          <ChevronLeft size={24} />
-        </button>
-
-        {/* viewport */}
-        <div className="circles-viewport">
-          {/* track trượt ngang: --idx được dùng để translateX */}
-          <div className="circles-track" style={styleIdx}>
-            {DATA.map((d, i) => (
-              <div className={`slide ${i === idx ? "active" : ""}`} key={i}>
-                <div className="circle">
-                  {/* Có thể tách t1/sub/t2 nếu muốn — ở đây dùng 1 text */}
-                  <p className="t2">{d.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <h2 
+            style={{ 
+              fontSize: '2.5rem', 
+              fontWeight: 700, 
+              zIndex: 1, 
+              color: '#222', 
+              position: 'relative', 
+              display: 'inline-block', 
+              whiteSpace: 'nowrap', 
+              lineHeight: 1.1 
+            }}
+          >
+            {t('core_values_heading')}
+            <span 
+              style={{ 
+                fontSize: '2.6rem', 
+                fontWeight: 700, 
+                zIndex: 0, 
+                opacity: 0.2, 
+                position: 'absolute', 
+                left: 0, 
+                top: 0, 
+                transform: 'translate(12px, -12px)', 
+                pointerEvents: 'none', 
+                whiteSpace: 'nowrap', 
+                lineHeight: 1.1 
+              }}
+            >
+              {t('core_values_heading')}
+            </span>
+          </h2>
         </div>
 
-        <button
-          className="nav-arrow right"
-          onClick={next}
-          disabled={atLast}
-          aria-label="Next"
+        <div 
+          className="core-carousel-responsive"
+          style={{
+            position: 'relative',
+            display: 'grid',
+            gridTemplateColumns: '70px 1fr 70px',
+            alignItems: 'center',
+            gap: '10px',
+            marginTop: '70px'
+          }}
         >
-          <ChevronRight size={24} />
-        </button>
-      </div>
-    </section>
+          <button
+            onClick={prev}
+            disabled={atFirst}
+            aria-label="Prev"
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '999px',
+              border: 0,
+              color: '#7b7b7b',
+              cursor: atFirst ? 'not-allowed' : 'pointer',
+              fontSize: '28px',
+              lineHeight: 1,
+              display: 'grid',
+              placeItems: 'center',
+              transition: 'transform 0.2s ease, background 0.2s ease, color 0.2s ease',
+              outline: 'none',
+              boxShadow: 'none',
+              background: '#fff',
+              justifySelf: 'end',
+              opacity: atFirst ? 0.35 : 1
+            }}
+            onMouseEnter={(e) => {
+              if (!atFirst) {
+                e.currentTarget.style.background = '#e7e7e7';
+                e.currentTarget.style.color = '#333';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#fff';
+              e.currentTarget.style.color = '#7b7b7b';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* viewport */}
+          <div 
+            style={{
+              overflow: 'hidden',
+              width: 'min(100%, calc(var(--slideW) * 3 + var(--gap) * 2))',
+              height: 'var(--slideW)',
+              justifySelf: 'center'
+            }}
+          >
+            {/* track */}
+            <div 
+              className="circles-track-animated"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--gap)',
+                paddingLeft: 'calc(50% - (var(--slideW) / 2))'
+              }}
+              {...styleIdx}
+            >
+              {DATA.map((d, i) => (
+                <div 
+                  className={i === idx ? "slide-active" : ""}
+                  key={i}
+                  style={{
+                    flex: '0 0 var(--slideW)',
+                    height: 'var(--slideW)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <div 
+                    className="circle-animated"
+                    style={{
+                      width: 'var(--slideW)',
+                      height: 'var(--slideW)',
+                      borderRadius: '50%',
+                      background: 'radial-gradient(120% 120% at 30% 20%, #5fc2df 0%, #2a9cbd 70%)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      textAlign: 'center'
+                    }}
+                  >
+                    <p 
+                      style={{
+                        margin: 0,
+                        color: '#fff',
+                        fontWeight: 600,
+                        letterSpacing: '0.2px',
+                        lineHeight: 1.35,
+                        fontSize: 'clamp(14px, 1.6vw, 22px)',
+                        padding: '0 18px'
+                      }}
+                    >
+                      {d.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={next}
+            disabled={atLast}
+            aria-label="Next"
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '999px',
+              border: 0,
+              color: '#7b7b7b',
+              cursor: atLast ? 'not-allowed' : 'pointer',
+              fontSize: '28px',
+              lineHeight: 1,
+              display: 'grid',
+              placeItems: 'center',
+              transition: 'transform 0.2s ease, background 0.2s ease, color 0.2s ease',
+              outline: 'none',
+              boxShadow: 'none',
+              background: '#fff',
+              justifySelf: 'start',
+              opacity: atLast ? 0.35 : 1
+            }}
+            onMouseEnter={(e) => {
+              if (!atLast) {
+                e.currentTarget.style.background = '#e7e7e7';
+                e.currentTarget.style.color = '#333';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#fff';
+              e.currentTarget.style.color = '#7b7b7b';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      </section>
+    </>
   );
 }

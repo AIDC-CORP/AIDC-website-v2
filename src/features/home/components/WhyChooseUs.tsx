@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValue, animate, useTransform } from 'motion/react';
 import { Users, Target, Lightbulb, Award } from 'lucide-react';
 import { useI18n } from '../../../shared/hooks/useI18n';
@@ -41,11 +41,10 @@ export default function WhyChooseUs() {
   const { ref: orbitWrapRef, width: cw } = useContainerWidth<HTMLDivElement>();
 
   const sizes = useMemo(() => {
-    // đường tròn nét đứt (giảm 5%)
     const dashedSize = clamp(cw * 0.45, 360, 680) * 0.95;
     const orbitRadius = dashedSize / 2;
   
-    const centerSize = Math.round(dashedSize * 0.58 * 0.9); // vòng trung tâm
+    const centerSize = Math.round(dashedSize * 0.58 * 0.9);
     const planetBase = dashedSize * 0.18;
     const itemSize = Math.round(planetBase * 1.2);
     const halfItem = itemSize / 2;
@@ -75,12 +74,30 @@ export default function WhyChooseUs() {
   const vals = useValues();
 
   return (
-    <section className="why-choose-section">
-      <div className="container-responsive">
+    <section 
+      style={{
+        padding: '5rem 0',
+        backgroundColor: 'white',
+        overflow: 'hidden'
+      }}
+    >
+      <div 
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 1rem',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}
+      >
         {/* Heading */}
-        <div className="why-choose-header">
+        <div 
+          style={{
+            textAlign: 'center',
+            marginBottom: '4rem'
+          }}
+        >
           <h2
-            className="main-heading"
             style={{
               fontSize: 'clamp(2rem, 2.2vw, 3rem)',
               fontWeight: 700,
@@ -94,7 +111,6 @@ export default function WhyChooseUs() {
           >
             {t('why_heading')}
             <span
-              className="main-heading-shadow"
               style={{
                 fontSize: 'clamp(2.1rem, 2.4vw, 3.2rem)',
                 fontWeight: 700,
@@ -117,17 +133,23 @@ export default function WhyChooseUs() {
         {/* Orbit Section */}
         <div
           ref={orbitWrapRef}
-          className="orbit-container"
           style={{
+            position: 'relative',
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
             maxWidth: '100%',
-            height: `${sizes.wrapSize}px`,     // << đủ chỗ cho icon quay
-            overflow: 'hidden',               // << không cắt tràn
+            height: `${sizes.wrapSize}px`,
           }}
         >
           {/* Dashed circle */}
           <motion.div
-            className="orbit-dashed"
             style={{
+              position: 'absolute',
+              borderRadius: '50%',
+              border: '4px dashed #53bedd',
               width: sizes.dashedSize,
               height: sizes.dashedSize,
               rotate: rotation,
@@ -136,8 +158,14 @@ export default function WhyChooseUs() {
 
           {/* Planets on orbit */}
           <motion.div
-            className="orbit-planets"
-            style={{ rotate: rotation }}
+            style={{ 
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              rotate: rotation 
+            }}
           >
             {vals.map((value, index) => {
               const angle = (index * 360) / vals.length;
@@ -145,32 +173,47 @@ export default function WhyChooseUs() {
               return (
                 <div
                   key={index}
-                  className="orbit-item"
                   style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
                     transform: `rotate(${angle}deg) translateY(-${sizes.orbitRadius}px)`,
                     transformOrigin: '0 0',
                   }}
                 >
                   <motion.div
-                    className="orbit-planet"
                     style={{
+                      borderRadius: '50%',
+                      backgroundColor: 'white',
+                      boxShadow: '0 14px 30px rgba(83,190,221,0.15), 0 6px 12px rgba(0,0,0,0.06)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: '4px solid #53bedd',
                       width: sizes.itemSize,
                       height: sizes.itemSize,
                       marginLeft: -sizes.halfItem,
                       marginTop: -sizes.halfItem,
                       rotate: counter,
-                      boxShadow:
-                        '0 14px 30px rgba(83,190,221,0.15), 0 6px 12px rgba(0,0,0,0.06)',
                     }}
                   >
                     <value.icon
-                      className="orbit-icon"
                       style={{
+                        color: '#53bedd',
+                        marginBottom: '0.25rem',
                         width: sizes.itemSize * 0.33,
                         height: sizes.itemSize * 0.33,
                       }}
                     />
-                    <span className="orbit-text">
+                    <span 
+                      style={{
+                        fontSize: '0.75rem',
+                        color: '#374151',
+                        textAlign: 'center',
+                        padding: '0 0.5rem'
+                      }}
+                    >
                       {value.title}
                     </span>
                   </motion.div>
@@ -181,17 +224,23 @@ export default function WhyChooseUs() {
 
           {/* Center circle */}
           <div
-            className="orbit-center"
             style={{
+              position: 'relative',
+              zIndex: 10,
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #53bedd, #2a9cbd)',
+              boxShadow: '0 24px 50px rgba(83,190,221,0.18), 0 10px 20px rgba(0,0,0,0.08)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              color: 'white',
               width: sizes.centerSize,
               height: sizes.centerSize,
               padding: sizes.pad,
-              boxShadow:
-                '0 24px 50px rgba(83,190,221,0.18), 0 10px 20px rgba(0,0,0,0.08)',
             }}
           >
             <div
-              className="orbit-center-content"
               style={{
                 maxWidth: sizes.contentW,
                 margin: '0 auto',
@@ -200,24 +249,24 @@ export default function WhyChooseUs() {
               }}
             >
               <h3
-                className="orbit-center-title"
                 style={{
                   fontSize: sizes.titleSize,
                   fontWeight: 800,
                   lineHeight: 1.15,
                   marginBottom: Math.round(sizes.titleSize * 0.35),
                   textShadow: '0 1px 2px rgba(0,0,0,0.25)',
+                  color: 'white'
                 }}
               >
                 {t('why_center_title')}
               </h3>
               <p
-                className="orbit-center-description"
                 style={{
                   fontSize: sizes.bodySize,
                   lineHeight: 1.35,
                   opacity: 0.95,
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                  color: 'white'
                 }}
               >
                 {t('why_center_desc')}
