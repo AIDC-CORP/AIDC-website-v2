@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useI18n } from '../../App';
+import { useI18n } from '../../shared/hooks/useI18n';
 import FormSection from './components/FormSection';
 import MapSection from './components/MapSection';
 

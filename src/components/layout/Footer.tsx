@@ -1,7 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useI18n } from '../../App';
+import { useI18n } from '../../shared/hooks/useI18n';
 
 const logo = new URL('@/assets/images/logo_aidc.png', import.meta.url).href;
 

@@ -1,7 +1,8 @@
 import React from "react";
 import "../../../styles/MissionVision.css";
-import { useI18n } from "../../../App";
+import { useI18n } from "../../../shared/hooks/useI18n";
 import { motion } from "motion/react";
+
 
 const quoteOpenIcon = new URL('@/assets/icons/quote-open.png', import.meta.url).href;
 const quoteCloseIcon = new URL('@/assets/icons/quotes-close.png', import.meta.url).href;

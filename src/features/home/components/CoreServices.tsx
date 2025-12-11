@@ -1,7 +1,7 @@
 import { Database, Brain, Code, Network } from 'lucide-react';
 import { motion } from 'motion/react';
 import React, { useMemo, useState } from 'react';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 
 function useServices() {
   const { t } = useI18n();

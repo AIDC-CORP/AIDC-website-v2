@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../../../components/ui/button';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 import '../../../styles/AboutIntro.css';
 
 const aboutIntroImage1 = new URL('@/assets/images/ai_trong_nong_nghiep.webp', import.meta.url).href;

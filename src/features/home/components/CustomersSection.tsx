@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 
 const y2yLogo = new URL('@/assets/images/y2y.png', import.meta.url).href;
 const ttcLogo = new URL('@/assets/images/logo-ttc-removebg.png', import.meta.url).href;

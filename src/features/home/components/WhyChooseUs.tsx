@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValue, animate, useTransform } from 'motion/react';
 import { Users, Target, Lightbulb, Award } from 'lucide-react';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 
 function useValues() {
   const { t } = useI18n();

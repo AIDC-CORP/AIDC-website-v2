@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 import { Button } from '../../../components/ui/button';
 
 function ContactMapSection() {

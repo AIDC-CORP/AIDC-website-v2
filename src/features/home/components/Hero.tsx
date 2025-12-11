@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../../../components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 import '../../../styles/Home.css';
 
 const hpBg = new URL('@/assets/images/hp_bg.jpg', import.meta.url).href;

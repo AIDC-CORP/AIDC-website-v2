@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Search, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { useI18n } from '../../App';
+import { useI18n } from '../../shared/hooks/useI18n';
 import '../../styles/Home.css';
 
 const logo = new URL('@/assets/images/logo.png', import.meta.url).href;

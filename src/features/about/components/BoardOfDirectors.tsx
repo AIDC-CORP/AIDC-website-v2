@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 
 const mrTan = new URL('@/assets/images/tan_avatar.jpg', import.meta.url).href;
 const mrQuyet = new URL('@/assets/images/quyet_avatar.jpg', import.meta.url).href;

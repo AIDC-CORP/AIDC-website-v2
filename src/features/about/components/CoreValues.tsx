@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../../../styles/CoreValues.css";
-import { useI18n } from "../../../App";
+import { useI18n } from "../../../shared/hooks/useI18n";
+
 
 type Item = { text: string };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from '../../../components/ui/input';
 import { Textarea } from '../../../components/ui/textarea';
 import { Button } from '../../../components/ui/button';
-import { useI18n } from '../../../App';
+import { useI18n } from '../../../shared/hooks/useI18n';
 
 export default function FormSection() {
   const { t } = useI18n();
