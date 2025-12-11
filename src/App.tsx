@@ -10,7 +10,6 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./features/home/Home";
 import About from "./features/about/About";
-import Customers from "./features/customers/Customers";
 import Career from "./features/career/Career";
 import Contact from "./features/contact/Contact";
 import ComingSoon from "./features/common/ComingSoon";
@@ -376,7 +375,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/customers" element={<Customers />} />
               <Route path="/career" element={<Career />} />
               <Route path="/blog" element={<ComingSoon />} />
               <Route path="/contact" element={<Contact />} />

@@ -33,12 +33,6 @@ export default function Footer() {
                 {t('footer_about')}
               </Link>
               <Link
-                to="/customers"
-                className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
-              >
-                {t('footer_customers')}
-              </Link>
-              <Link
                 to="/career"
                 className="text-white/80 hover:text-[#53bedd] transition-colors text-sm"
               >

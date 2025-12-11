@@ -258,7 +258,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
           </div>
 
           {/* Pagination - Mock */}
-          <div className="flex justify-center gap-2 mt-8">
+          {/* <div className="flex justify-center gap-2 mt-8">
             {[1, 2, 3].map((page) => (
               <button
                 key={page}
@@ -271,7 +271,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
                 {page}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

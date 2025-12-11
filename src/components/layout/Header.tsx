@@ -15,7 +15,6 @@ export default function Header() {
   const items = [
     { label: t('nav_home'), path: '/' },
     { label: t('nav_about'), path: '/about' },
-    { label: t('nav_customers'), path: '/customers' },
     { label: t('nav_career'), path: '/career' },
     { label: t('nav_blog'), path: 'https://blog.aidccompany.com/', external: true },
     { label: t('nav_contact'), path: '/contact' },

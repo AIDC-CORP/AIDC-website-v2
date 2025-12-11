@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useI18n } from '../../App';
+import { useI18n } from '../../../App';
 
 const y2yLogo = new URL('@/assets/images/y2y.png', import.meta.url).href;
 const ttcLogo = new URL('@/assets/images/logo-ttc-removebg.png', import.meta.url).href;
@@ -14,7 +14,7 @@ function useCommitments() {
   return useMemo(() => [t('com_1'), t('com_2'), t('com_3')], [t]);
 }
 
-// Mock logo URLs - in production, replace with actual partner logos
+// Partner logos
 const partnerLogos = [
   y2yLogo,
   ttcLogo,
@@ -23,27 +23,27 @@ const partnerLogos = [
   par5Logo,
 ];
 
-export default function Customers({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
+export default function CustomersSection() {
   const { t } = useI18n();
-  const [headerHeight, setHeaderHeight] = useState(headerHeightPx);
+  const [headerHeight, setHeaderHeight] = useState(60);
   const commitments = useCommitments();
 
   useEffect(() => {
     const header = document.querySelector<HTMLElement>('#site-header');
     const updateHeight = () => {
-      const h = header?.offsetHeight ?? headerHeightPx;
+      const h = header?.offsetHeight ?? 60;
       setHeaderHeight(h);
     };
     updateHeight();
     window.addEventListener('resize', updateHeight);
     return () => window.removeEventListener('resize', updateHeight);
-  }, [headerHeightPx]);
+  }, []);
 
   return (
-    <div className="pt-32 pb-20">
+    <>
       {/* Section 1 - Dark Background */}
-      <section className="py-20 bg-[#0a2342]" style={{ marginTop: `-${headerHeightPx}px`, paddingTop: `${headerHeightPx + 60}px` }}>
-        <div className="container mx-auto px-4" style={{ marginTop: `-${headerHeight}px`, paddingTop: `${headerHeight + 60}px` }}>
+      <section id="customers" className="py-20 bg-[#0a2342]">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             {/* Left - Title */}
             <div className="lg:w-1/2 space-y-6">
@@ -108,6 +108,6 @@ export default function Customers({ headerHeightPx = 60 }: { headerHeightPx?: nu
           </motion.div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
