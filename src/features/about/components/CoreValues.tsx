@@ -64,43 +64,49 @@ export default function CoreValuesCSS() {
           overflowX: 'hidden'
         }}
       >
-        <div 
-          style={{
-            textAlign: 'center',
-            marginBottom: '4rem'
-          }}
-        >
-          <h2 
-            style={{ 
-              fontSize: '2.5rem', 
-              fontWeight: 700, 
-              zIndex: 1, 
-              color: '#222', 
-              position: 'relative', 
-              display: 'inline-block', 
-              whiteSpace: 'nowrap', 
-              lineHeight: 1.1 
+        <div className="container mx-auto px-4">
+          <div 
+            style={{
+              textAlign: 'left',
+              marginBottom: '4rem',
+              paddingLeft: '1rem' // Added little padding to not stick to edge
             }}
           >
-            {t('core_values_heading')}
-            <span 
-              style={{ 
-                fontSize: '2.6rem', 
-                fontWeight: 700, 
-                zIndex: 0, 
-                opacity: 0.2, 
-                position: 'absolute', 
-                left: 0, 
-                top: 0, 
-                transform: 'translate(12px, -12px)', 
-                pointerEvents: 'none', 
-                whiteSpace: 'nowrap', 
-                lineHeight: 1.1 
+            <h2
+              style={{
+                fontSize: '44px',
+                fontWeight: 700,
+                color: '#000',
+                position: 'relative',
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+                lineHeight: 1.2,
+                zIndex: 2,
+                fontFamily: 'Roboto, sans-serif'
               }}
             >
               {t('core_values_heading')}
-            </span>
-          </h2>
+              <span
+                style={{
+                  fontSize: '66px',
+                  fontWeight: 700,
+                  position: 'absolute',
+                  left: '30px',
+                  top: '-18px',
+                  transform: 'translateY(-20%)',
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1,
+                  zIndex: -1,
+                  background: 'linear-gradient(to bottom, rgba(209, 213, 219, 1) 20%, rgba(209, 213, 219, 0) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                {t('core_values_heading')}
+              </span>
+            </h2>
+          </div>
         </div>
 
         <div 
@@ -168,9 +174,9 @@ export default function CoreValuesCSS() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 'var(--gap)',
-                paddingLeft: 'calc(50% - (var(--slideW) / 2))'
+                paddingLeft: 'calc(50% - (var(--slideW) / 2))',
+                ...styleIdx
               }}
-              {...styleIdx}
             >
               {DATA.map((d, i) => (
                 <div 

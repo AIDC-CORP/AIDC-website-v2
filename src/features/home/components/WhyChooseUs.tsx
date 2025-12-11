@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValue, animate, useTransform } from 'motion/react';
 import { Users, Target, Lightbulb, Award } from 'lucide-react';
 import { useI18n } from '../../../shared/hooks/useI18n';
+import bgCenter from '../assets/why_choose_us_center_bg.png';
 
 function useValues() {
   const { t } = useI18n();
@@ -34,7 +35,7 @@ export default function WhyChooseUs() {
   const { t } = useI18n();
   const rotation = useMotionValue(0);
   useEffect(() => {
-    const controls = animate(rotation, 360, { duration: 20, repeat: Infinity, ease: 'linear' });
+    const controls = animate(rotation, 360, { duration: 10, repeat: Infinity, ease: 'linear' });
     return controls.stop;
   }, [rotation]);
 
@@ -96,7 +97,8 @@ export default function WhyChooseUs() {
             textAlign: 'left',
             marginBottom: '4rem',
             position: 'relative',
-            width: '100%'
+            width: '100%',
+            paddingLeft: '1rem'
           }}
         >
           <h2
@@ -243,10 +245,32 @@ export default function WhyChooseUs() {
               width: sizes.centerSize,
               height: sizes.centerSize,
               padding: sizes.pad,
+              overflow: 'hidden', // Ensure image stays within circle
             }}
           >
+            {/* Background Image */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: `url(${bgCenter})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.6,
+                mixBlendMode: 'overlay',
+                pointerEvents: 'none',
+                filter: 'contrast(1.1)'
+              }} 
+            />
+            
+            {/* Content Container - z-index to sit above image */}
             <div
               style={{
+                position: 'relative',
+                zIndex: 2,
                 maxWidth: sizes.contentW,
                 margin: '0 auto',
                 textWrap: 'balance' as any,

@@ -34,47 +34,53 @@ export default function MissionVision() {
           padding: 'clamp(28px, 4vw, 56px) 0'
         }}
       >
-        <div 
-          style={{
-            textAlign: 'center',
-            marginBottom: '4rem'
-          }}
-        >
-          <motion.h2 
-            style={{ 
-              fontSize: '2rem', 
-              fontWeight: 700, 
-              zIndex: 1, 
-              color: '#222', 
-              position: 'relative', 
-              display: 'inline-block', 
-              whiteSpace: 'nowrap', 
-              lineHeight: 1.1 
+        <div className="container mx-auto px-4">
+          <div 
+            style={{
+              textAlign: 'left',
+               paddingLeft: '1rem',
+              marginBottom: '4rem'
             }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {t('mission_vision_heading')}
-            <span 
-              style={{ 
-                fontSize: '2.1rem', 
-                fontWeight: 700, 
-                zIndex: 0, 
-                opacity: 0.2, 
-                position: 'absolute', 
-                left: 0, 
-                top: 0, 
-                transform: 'translate(12px, -12px)', 
-                pointerEvents: 'none', 
-                whiteSpace: 'nowrap', 
-                lineHeight: 1.1 
+            <motion.h2 
+              style={{
+                fontSize: '44px',
+                fontWeight: 700,
+                color: '#000',
+                position: 'relative',
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+                lineHeight: 1.2,
+                zIndex: 2,
+                fontFamily: 'Roboto, sans-serif'
               }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
             >
               {t('mission_vision_heading')}
-            </span>
-          </motion.h2>
+              <span
+                style={{
+                  fontSize: '66px',
+                  fontWeight: 700,
+                  position: 'absolute',
+                  left: '30px',
+                  top: '-18px',
+                  transform: 'translateY(-20%)',
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1,
+                  zIndex: -1,
+                  background: 'linear-gradient(to bottom, rgba(209, 213, 219, 1) 20%, rgba(209, 213, 219, 0) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                {t('mission_vision_heading')}
+              </span>
+            </motion.h2>
+          </div>
         </div>
         <div 
           className="mv-responsive-grid"

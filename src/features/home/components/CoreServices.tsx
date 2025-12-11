@@ -2,6 +2,10 @@ import { Database, Brain, Code, Network } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 import { useI18n } from '../../../shared/hooks/useI18n';
+import bgDatabase from '../assets/service_bg_database.png';
+import bgAi from '../assets/service_bg_ai.png';
+import bgCode from '../assets/service_bg_code.png';
+import bgNetwork from '../assets/service_bg_network.png';
 
 function useServices() {
   const { t } = useI18n();
@@ -11,21 +15,25 @@ function useServices() {
         icon: Database,
         title: t('svc1_title'),
         description: [t('svc1_desc1'), t('svc1_desc2')],
+        image: bgDatabase
       },
       {
         icon: Brain,
         title: t('svc2_title'),
         description: [t('svc2_desc1'), t('svc2_desc2')],
+        image: bgAi
       },
       {
         icon: Code,
         title: t('svc3_title'),
         description: [t('svc3_desc1'), t('svc3_desc2'), t('svc3_desc3')],
+        image: bgCode
       },
       {
         icon: Network,
         title: t('svc4_title'),
         description: [t('svc4_desc1'), t('svc4_desc2')],
+        image: bgNetwork
       },
     ],
     [t]
@@ -70,14 +78,7 @@ export default function CoreServices() {
             boxSizing: 'border-box'
           }}
         >
-          <div 
-            style={{
-              textAlign: 'left',
-              marginBottom: '4rem',
-              position: 'relative',
-              width: '100%'
-            }}
-          >
+          <div className="text-left mb-16 pl-4">
             <h2 
               style={{ 
                 fontSize: '44px',
@@ -130,6 +131,7 @@ function ServiceCard({ service, index }: {
     icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
     title: string;
     description: string[];
+    image: string;
   }; 
   index: number 
 }) {
@@ -164,16 +166,60 @@ function ServiceCard({ service, index }: {
             position: 'absolute',
             inset: 0,
             borderRadius: '1rem',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.5)',
             backfaceVisibility: 'hidden',
-            backgroundColor: '#53bedd',
+            backgroundColor: '#2a9cbd', // Fallback
+            background: 'linear-gradient(135deg, #42a9ce 0%, #1886aa 100%)', // Slightly darker base for better image contrast
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1.5rem'
+            overflow: 'hidden'
           }}
         >
+          
+          {/* Background Image - Visible Layer */}
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${service.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.75, // High opacity for clear visibility
+              mixBlendMode: 'overlay', // Overlay makes the details pop against the color
+              pointerEvents: 'none',
+              filter: 'contrast(0.55)' // Boost contrast slightly
+            }} 
+          />
+          
+          {/* Additional Shine for depth */}
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(105deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 50%)',
+              pointerEvents: 'none'
+            }} 
+          />
+          {/* Subtle Texture/Noise */}
+          <div
+             style={{
+               position: 'absolute',
+               bottom: '-50%',
+               right: '-50%',
+               width: '100%',
+               height: '100%',
+               background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
+               pointerEvents: 'none'
+             }}
+          />
           <service.icon 
             style={{
               width: '4rem',
@@ -187,7 +233,9 @@ function ServiceCard({ service, index }: {
               color: 'white',
               textAlign: 'center',
               fontSize: '1.25rem',
-              fontWeight: 600
+              fontWeight: 700,
+              zIndex: 1,
+              textShadow: '0 2px 4px rgba(0,0,0,0.2)' // Added text shadow for contrast
             }}
           >
             {service.title}
@@ -202,9 +250,9 @@ function ServiceCard({ service, index }: {
             borderRadius: '1rem',
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
             backfaceVisibility: 'hidden',
-            backgroundColor: 'white',
+            background: 'linear-gradient(to bottom right, #ffffff, #f0f9ff) padding-box, linear-gradient(135deg, #53bedd, #2563eb) border-box',
+            border: '2px solid transparent',
             padding: '1.5rem',
-            border: '2px solid #53bedd',
             transform: 'rotateY(180deg)',
             display: 'flex',
             flexDirection: 'column',

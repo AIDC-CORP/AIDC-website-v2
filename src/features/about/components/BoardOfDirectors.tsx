@@ -101,15 +101,41 @@ export default function BoardOfDirectors() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-        <h2 className="main-heading"
-          style={{ fontSize: '2.5rem', fontWeight: 700, zIndex: 1, color: '#222', position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-        >
-          {t('board_heading')}
-          <span className="main-heading-shadow"
-            style={{ fontSize: '2.6rem', fontWeight: 700, zIndex: 0, opacity: 0.2, position: 'absolute', left: 0, top: 0, transform: 'translate(12px, -12px)', pointerEvents: 'none', whiteSpace: 'nowrap', lineHeight: 1.1 }}
-          >{t('board_heading')}</span>
-        </h2>
+        <div className="text-left mb-16 pl-4">
+          <h2
+            style={{
+              fontSize: '44px',
+              fontWeight: 700,
+              color: '#000',
+              position: 'relative',
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              lineHeight: 1.2,
+              zIndex: 2,
+              fontFamily: 'Roboto, sans-serif'
+            }}
+          >
+            {t('board_heading')}
+            <span
+              style={{
+                fontSize: '66px',
+                fontWeight: 700,
+                position: 'absolute',
+                left: '30px',
+                top: '-18px',
+                transform: 'translateY(-20%)',
+                pointerEvents: 'none',
+                whiteSpace: 'nowrap',
+                lineHeight: 1,
+                zIndex: -1,
+                background: 'linear-gradient(to bottom, rgba(209, 213, 219, 1) 20%, rgba(209, 213, 219, 0) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              {t('board_heading')}
+            </span>
+          </h2>
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">

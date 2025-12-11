@@ -4,6 +4,8 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { useI18n } from '../../../shared/hooks/useI18n';
 
+import bgIntro from '../assets/about_intro_bg.png';
+
 const aboutIntroImage1 = new URL('@/assets/images/ai_trong_nong_nghiep.webp', import.meta.url).href;
 const aboutIntroImage2 = new URL('@/assets/images/AI-Systems.webp', import.meta.url).href;
 const aboutIntroImage3 = new URL('@/assets/images/big_data.png', import.meta.url).href;
@@ -59,8 +61,45 @@ export default function AboutIntro({
           }
         }
       `}</style>
-      <section className="about-fix relative bg-[#53bedd] text-white overflow-hidden flex min-h-screen">
-        <div className="max-w-[1200px] w-full mx-auto px-3 pb-10 pt-8 sm:px-3 md:px-8 xl:px-12">
+      <section 
+        className="about-fix relative text-white overflow-hidden flex min-h-screen"
+        style={{
+          backgroundColor: '#53bedd' // Fallback
+        }}
+      >
+        {/* Background Image Layer */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${bgIntro})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.4,
+            mixBlendMode: 'overlay',
+            pointerEvents: 'none',
+            filter: 'contrast(0.5)'
+          }}
+        />
+        
+        {/* Gradient Overlay for blue tint */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(135deg, rgba(83, 190, 221, 0.95) 0%, rgba(42, 156, 189, 0.95) 100%)',
+            pointerEvents: 'none',
+            zIndex: 0
+          }}
+        />
+
+        <div className="max-w-[1200px] w-full mx-auto px-3 pb-10 pt-8 sm:px-3 md:px-8 xl:px-12 relative z-10">
           <div className="flex flex-col items-center justify-center gap-8 lg:flex-row lg:gap-10 xl:gap-12">
             <motion.div
               className="w-full text-center pr-0 mt-4 md:mt-8 flex flex-col gap-6 lg:w-1/2 lg:text-left lg:pr-4 xl:pr-6"
