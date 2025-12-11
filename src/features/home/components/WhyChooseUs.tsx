@@ -93,36 +93,41 @@ export default function WhyChooseUs() {
         {/* Heading */}
         <div 
           style={{
-            textAlign: 'center',
-            marginBottom: '4rem'
+            textAlign: 'left',
+            marginBottom: '4rem',
+            position: 'relative',
+            width: '100%'
           }}
         >
           <h2
             style={{
-              fontSize: 'clamp(2rem, 2.2vw, 3rem)',
+              fontSize: '44px',
               fontWeight: 700,
-              zIndex: 1,
-              color: '#222',
+              color: '#000',
               position: 'relative',
               display: 'inline-block',
               whiteSpace: 'nowrap',
-              lineHeight: 1.1,
+              lineHeight: 1.2,
+              zIndex: 2,
+              fontFamily: 'Roboto, sans-serif'
             }}
           >
             {t('why_heading')}
             <span
               style={{
-                fontSize: 'clamp(2.1rem, 2.4vw, 3.2rem)',
+                fontSize: '66px',
                 fontWeight: 700,
-                zIndex: 0,
-                opacity: 0.2,
                 position: 'absolute',
-                left: 0,
-                top: 0,
-                transform: 'translate(12px, -15px)',
+                left: '30px',
+                top: '-18px',
+                transform: 'translateY(-20%)',
                 pointerEvents: 'none',
                 whiteSpace: 'nowrap',
-                lineHeight: 1.1,
+                lineHeight: 1,
+                zIndex: -1,
+                background: 'linear-gradient(to bottom, rgba(209, 213, 219, 1) 20%, rgba(209, 213, 219, 0) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
               }}
             >
               {t('why_heading')}
