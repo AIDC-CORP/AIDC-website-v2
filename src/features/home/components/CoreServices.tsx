@@ -1,3 +1,4 @@
+
 import { Database, Brain, Code, Network } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
@@ -66,19 +67,25 @@ export default function CoreServices() {
         id="core-services"
         style={{
           padding: '5rem 0',
-          backgroundColor: '#f9fafb'
+          backgroundColor: '#f9fafb', // Reverted to Light
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
+        {/* Removed Dark Background Decorative Elements */}
+
         <div 
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
             padding: '0 1rem',
             width: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            position: 'relative',
+            zIndex: 10
           }}
         >
-          <div className="text-left mb-16 pl-4">
+          <div className="text-left mb-16 pl-4 relative">
             <h2 
               style={{ 
                 fontSize: '44px',
@@ -146,7 +153,7 @@ function ServiceCard({ service, index }: {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{
-        height: '20rem',
+        height: '24rem', // Slightly taller for cleaner layout
         perspective: '1000px'
       }}
     >
@@ -168,8 +175,9 @@ function ServiceCard({ service, index }: {
             borderRadius: '1rem',
             boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.5)',
             backfaceVisibility: 'hidden',
-            backgroundColor: '#2a9cbd', // Fallback
-            background: 'linear-gradient(135deg, #42a9ce 0%, #1886aa 100%)', // Slightly darker base for better image contrast
+            backgroundColor: '#0B1120', 
+            // Darker Hero-like gradient
+            background: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)', 
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -189,10 +197,10 @@ function ServiceCard({ service, index }: {
               backgroundImage: `url(${service.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              opacity: 0.75, // High opacity for clear visibility
-              mixBlendMode: 'overlay', // Overlay makes the details pop against the color
+              opacity: 0.6, 
+              mixBlendMode: 'overlay',
               pointerEvents: 'none',
-              filter: 'contrast(0.55)' // Boost contrast slightly
+              filter: 'grayscale(0.5) contrast(0.97)' // Desaturate slightly to match neutral theme
             }} 
           />
           
@@ -204,28 +212,18 @@ function ServiceCard({ service, index }: {
               left: 0,
               width: '100%',
               height: '100%',
-              background: 'linear-gradient(105deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 50%)',
+              background: 'linear-gradient(105deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 50%)',
               pointerEvents: 'none'
             }} 
           />
-          {/* Subtle Texture/Noise */}
-          <div
-             style={{
-               position: 'absolute',
-               bottom: '-50%',
-               right: '-50%',
-               width: '100%',
-               height: '100%',
-               background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
-               pointerEvents: 'none'
-             }}
-          />
+
           <service.icon 
             style={{
               width: '4rem',
               height: '4rem',
               color: 'white',
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              zIndex: 1
             }}
           />
           <h3 
@@ -235,14 +233,14 @@ function ServiceCard({ service, index }: {
               fontSize: '1.25rem',
               fontWeight: 700,
               zIndex: 1,
-              textShadow: '0 2px 4px rgba(0,0,0,0.2)' // Added text shadow for contrast
+              textShadow: '0 2px 4px rgba(0,0,0,0.2)'
             }}
           >
             {service.title}
           </h3>
         </div>
 
-        {/* Back Face */}
+        {/* Back Face - Original Light Style */}
         <div 
           style={{
             position: 'absolute',

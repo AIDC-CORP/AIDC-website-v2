@@ -101,12 +101,13 @@ export default function MissionVision() {
             {/* Philosophy of action */}
             <motion.div 
               className="mv-card-scale"
-              style={{
+                style={{
                 position: 'relative',
-                background: '#53bedd',
-                color: '#ffffff',
+                background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))',
+                color: '#f8fafc',
                 borderRadius: '28px',
-                boxShadow: '0 12px 28px rgba(0,0,0,.18)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.4)',
                 padding: 'clamp(16px, 2.8vw, 26px) clamp(16px, 2.8vw, 28px)',
                 overflow: 'hidden',
                 minHeight: '200px'
@@ -122,13 +123,15 @@ export default function MissionVision() {
                   top: '12px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: '#ffffff',
-                  color: '#2a6f71',
+                  background: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#38bdf8', // Sky blue
+                  border: '1px solid rgba(56, 189, 248, 0.3)',
                   fontWeight: 700,
                   fontSize: '14px',
-                  padding: '8px 18px',
+                  padding: '6px 16px',
                   borderRadius: '999px',
-                  boxShadow: '0 6px 14px rgba(0,0,0,.08)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -189,12 +192,13 @@ export default function MissionVision() {
             {/* Brand Message */}
             <motion.div 
               className="mv-card-scale"
-              style={{
+                style={{
                 position: 'relative',
-                background: '#53bedd',
-                color: '#ffffff',
+                background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))',
+                color: '#f8fafc',
                 borderRadius: '28px',
-                boxShadow: '0 12px 28px rgba(0,0,0,.18)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.4)',
                 padding: 'clamp(16px, 2.8vw, 26px) clamp(16px, 2.8vw, 28px)',
                 overflow: 'hidden',
                 minHeight: '200px',
@@ -211,13 +215,15 @@ export default function MissionVision() {
                   top: '12px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: '#ffffff',
-                  color: '#2a6f71',
+                  background: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#38bdf8', // Standardizing to Cyan/Sky Blue
+                  border: '1px solid rgba(56, 189, 248, 0.3)',
                   fontWeight: 700,
                   fontSize: '14px',
-                  padding: '8px 18px',
+                  padding: '6px 16px',
                   borderRadius: '999px',
-                  boxShadow: '0 6px 14px rgba(0,0,0,.08)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -303,8 +309,9 @@ export default function MissionVision() {
                   inset: 0,
                   transform: 'translate(-4px, -6px) rotate(-3.5deg)',
                   borderRadius: '22px',
-                  background: '#28ADC2',
-                  filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18))',
+                  background: '#0f172a',
+                  opacity: 0.8,
+                  border: '1px solid rgba(56, 189, 248, 0.2)',
                   transition: 'transform 0.3s ease'
                 }}
               />
@@ -312,11 +319,12 @@ export default function MissionVision() {
                 className="mv-speech-scale"
                 style={{
                   position: 'relative',
-                  background: '#53bedd',
-                  color: '#ffffff',
+                  background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))',
+                  color: '#f8fafc',
+                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '22px',
                   padding: 'clamp(16px, 2.2vw, 24px)',
-                  boxShadow: '0 12px 28px rgba(0,0,0,.18)',
+                  boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.4)',
                   overflow: 'hidden'
                 }}
               >
@@ -326,14 +334,16 @@ export default function MissionVision() {
                     top: '10px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: '#fff',
-                    color: '#2a6f71',
+                    background: 'rgba(255,255,255,0.1)',
+                    backdropFilter: 'blur(8px)',
+                    color: '#38bdf8',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
                     fontWeight: 800,
                     fontSize: '14px',
-                    padding: '8px 18px',
+                    padding: '6px 16px',
                     borderRadius: '999px',
                     whiteSpace: 'nowrap',
-                    boxShadow: '0 6px 14px rgba(0,0,0,.08)'
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                   }}
                 >
                   {t('mission_label')}
@@ -400,8 +410,9 @@ export default function MissionVision() {
                   inset: 0,
                   transform: 'translate(6px, -3px) rotate(3.5deg)',
                   borderRadius: '22px',
-                  background: '#28ADC2',
-                  filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18))',
+                  background: '#0f172a',
+                  opacity: 0.8,
+                  border: '1px solid rgba(56, 189, 248, 0.2)',
                   transition: 'transform 0.3s ease'
                 }}
               />
@@ -409,11 +420,12 @@ export default function MissionVision() {
                 className="mv-speech-scale"
                 style={{
                   position: 'relative',
-                  background: '#53bedd',
-                  color: '#ffffff',
+                   background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))',
+                  color: '#f8fafc',
+                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '22px',
                   padding: 'clamp(16px, 2.2vw, 24px)',
-                  boxShadow: '0 12px 28px rgba(0,0,0,.18)',
+                  boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.4)',
                   overflow: 'hidden'
                 }}
               >
@@ -423,14 +435,16 @@ export default function MissionVision() {
                     top: '10px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: '#fff',
-                    color: '#2a6f71',
+                    background: 'rgba(255,255,255,0.1)',
+                    backdropFilter: 'blur(8px)',
+                    color: '#38bdf8',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
                     fontWeight: 800,
                     fontSize: '14px',
-                    padding: '8px 18px',
+                    padding: '6px 16px',
                     borderRadius: '999px',
                     whiteSpace: 'nowrap',
-                    boxShadow: '0 6px 14px rgba(0,0,0,.08)'
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                   }}
                 >
                   {t('vision_label')}
@@ -496,8 +510,9 @@ export default function MissionVision() {
                   inset: 0,
                   transform: 'translate(-5px, 4px) rotate(-3.5deg)',
                   borderRadius: '22px',
-                  background: '#28ADC2',
-                  filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18))',
+                  background: '#0f172a',
+                  opacity: 0.8,
+                  border: '1px solid rgba(56, 189, 248, 0.2)',
                   transition: 'transform 0.3s ease'
                 }}
               />
@@ -505,11 +520,12 @@ export default function MissionVision() {
                 className="mv-speech-scale"
                 style={{
                   position: 'relative',
-                  background: '#53bedd',
-                  color: '#ffffff',
+                   background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))',
+                  color: '#f8fafc',
+                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '22px',
                   padding: 'clamp(16px, 2.2vw, 24px)',
-                  boxShadow: '0 12px 28px rgba(0,0,0,.18)',
+                  boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.4)',
                   overflow: 'hidden'
                 }}
               >
@@ -519,14 +535,16 @@ export default function MissionVision() {
                     top: '10px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: '#fff',
-                    color: '#2a6f71',
+                    background: 'rgba(255,255,255,0.1)',
+                    backdropFilter: 'blur(8px)',
+                    color: '#38bdf8',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
                     fontWeight: 800,
                     fontSize: '14px',
-                    padding: '8px 18px',
+                    padding: '6px 16px',
                     borderRadius: '999px',
                     whiteSpace: 'nowrap',
-                    boxShadow: '0 6px 14px rgba(0,0,0,.08)'
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                   }}
                 >
                   {t('brand_spirit_label')}

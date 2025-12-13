@@ -143,9 +143,9 @@ export default function BoardOfDirectors() {
           <div className="lg:w-1/2 flex items-center justify-center">
             <div className="relative w-96 h-96">
               {/* Decorative Circles */}
-              <div className="absolute inset-0 rounded-full border-4 border-[#53bedd]" />
+              <div className="absolute inset-0 rounded-full border-4 border-[#334155] opacity-20" />
               <motion.div
-                className="absolute inset-4 rounded-full border-4 border-dashed border-[#53bedd]"
+                className="absolute inset-4 rounded-full border-4 border-dashed border-[#1e293b] opacity-30"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
               />
@@ -157,12 +157,17 @@ export default function BoardOfDirectors() {
                   initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.45 }}
-                  className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
+                  className="w-48 h-48 rounded-full overflow-hidden shadow-2xl"
+                  style={{
+                    border: '4px solid rgba(255,255,255,0.1)',
+                    background: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)',
+                    boxShadow: '0 24px 50px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.2)'
+                  }}
                 >
                   <img
                     src={directors[selectedIndex].image}
                     alt={directors[selectedIndex].name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                 </motion.div>
               </div>
@@ -185,12 +190,16 @@ export default function BoardOfDirectors() {
                     <motion.div
                       whileHover={{ scale: 1.08 }}
                       whileTap={{ scale: 0.96 }}
-                      className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg ring-0"
+                      className="w-24 h-24 rounded-full overflow-hidden shadow-lg ring-0"
+                      style={{
+                        border: '2px solid rgba(255,255,255,0.1)',
+                        background: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)'
+                      }}
                     >
                       <img
                         src={directors[idx].image}
                         alt={directors[idx].name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
                       />
                     </motion.div>
                   </motion.button>
@@ -200,20 +209,70 @@ export default function BoardOfDirectors() {
           </div>
 
           {/* Right - Director Info */}
-          <div className="lg:w-1/2 space-y-6">
+          <div className="lg:w-1/2" style={{ paddingLeft: '2rem' }}>
             <motion.div
               key={`info-${selectedIndex}`}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.45 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative'
+              }}
             >
-              <h3 className="text-gray-900">{directors[selectedIndex].name}</h3>
-              <p className="text-[#53bedd] mb-4">
-                {directors[selectedIndex].position}
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                {directors[selectedIndex].description}
-              </p>
+               {/* Decorative Quote Background */}
+               <div style={{
+                   position: 'absolute', top: '-60px', left: '-40px',
+                   fontSize: '140px', fontFamily: 'serif',
+                   color: '#f1f5f9', zIndex: 0, pointerEvents: 'none',
+                   lineHeight: 1, opacity: 0.8
+               }}>
+                   “
+               </div>
+
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                  <h3 style={{
+                    fontSize: '3.5rem',
+                    fontWeight: 800,
+                    lineHeight: 1.1,
+                    background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    marginBottom: '1rem',
+                    letterSpacing: '-0.02em'
+                  }}>
+                    {directors[selectedIndex].name}
+                  </h3>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
+                      <div style={{ height: '4px', width: '60px', background: 'linear-gradient(90deg, #53bedd, #2563eb)', borderRadius: '2px' }} />
+                      <p style={{
+                        color: '#53bedd',
+                        fontSize: '1.25rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.15em'
+                      }}>
+                        {directors[selectedIndex].position}
+                      </p>
+                  </div>
+
+                  <div style={{
+                      position: 'relative',
+                      paddingLeft: '2rem',
+                      borderLeft: '4px solid #e2e8f0'
+                  }}>
+                    <p style={{
+                        fontSize: '1.25rem',
+                        lineHeight: 1.8,
+                        color: '#475569',
+                        fontWeight: 400
+                    }}>
+                        {directors[selectedIndex].description}
+                    </p>
+                  </div>
+              </div>
             </motion.div>
           </div>
         </div>

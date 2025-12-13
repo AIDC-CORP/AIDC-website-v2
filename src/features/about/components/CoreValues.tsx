@@ -1,21 +1,28 @@
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useI18n } from "../../../shared/hooks/useI18n";
+import cvPractice from "../../../assets/images/core_values/cv_practice.png";
+import cvResponsibility from "../../../assets/images/core_values/cv_responsibility.png";
+import cvCreativity from "../../../assets/images/core_values/cv_creativity.png";
+import cvDiscipline from "../../../assets/images/core_values/cv_discipline.png";
+import cvQuality from "../../../assets/images/core_values/cv_quality.png";
+import cvTransparency from "../../../assets/images/core_values/cv_transparency.png";
+import cvLearning from "../../../assets/images/core_values/cv_learning.png";
 
 
-type Item = { text: string };
+type Item = { text: string; image: string };
 
 export default function CoreValuesCSS() {
   const { t } = useI18n();
   const DATA: Item[] = useMemo(
     () => [
-      { text: t("cv_1") },
-      { text: t("cv_2") },
-      { text: t("cv_3") },
-      { text: t("cv_4") },
-      { text: t("cv_5") },
-      { text: t("cv_6") },
-      { text: t("cv_7") },
+      { text: t("cv_1"), image: cvPractice },
+      { text: t("cv_2"), image: cvResponsibility },
+      { text: t("cv_3"), image: cvCreativity },
+      { text: t("cv_4"), image: cvDiscipline },
+      { text: t("cv_5"), image: cvQuality },
+      { text: t("cv_6"), image: cvTransparency },
+      { text: t("cv_7"), image: cvLearning },
     ],
     [t]
   );
@@ -196,12 +203,17 @@ export default function CoreValuesCSS() {
                       width: 'var(--slideW)',
                       height: 'var(--slideW)',
                       borderRadius: '50%',
-                      background: 'radial-gradient(120% 120% at 30% 20%, #5fc2df 0%, #2a9cbd 70%)',
+                      background: `linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.85)), url(${d.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0,0,0,0.5)',
+                      border: '1px solid rgba(255,255,255,0.15)',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.8)'
                     }}
                   >
                     <p 

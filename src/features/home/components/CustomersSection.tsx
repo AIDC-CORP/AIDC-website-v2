@@ -47,12 +47,19 @@ export default function CustomersSection() {
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             {/* Left - Title */}
             <div className="lg:w-1/2 space-y-6">
-              <h2 className="text-[#53bedd]"
-              style={{ fontSize: '2.3rem', fontWeight: 700, zIndex: 1, position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+              <h2 className="text-white"
+              style={{ fontWeight: 800, 
+                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '0.5rem' }}
               >{t('customers_heading')}</h2>
               <div className="flex items-center gap-4">
                 <h3 className="text-white"
-                style={{ fontSize: '1.5rem', fontWeight: 700, zIndex: 1, position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', lineHeight: 1.1 }}
+                style={{ color: '#94a3b8',
+                  fontSize: '1.125rem',
+                  lineHeight: 1.7,
+                  maxWidth: '42rem' }}
                 >{t('customers_commitment')}</h3>
                 <ChevronRight className="w-8 h-8 text-white" />
               </div>

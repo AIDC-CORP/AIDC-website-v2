@@ -156,10 +156,11 @@ export default function WhyChooseUs() {
             style={{
               position: 'absolute',
               borderRadius: '50%',
-              border: '4px dashed #53bedd',
+              border: '4px dashed #94a3b8', // Neutral slate for dashed line
               width: sizes.dashedSize,
               height: sizes.dashedSize,
               rotate: rotation,
+              opacity: 0.5,
             }}
           />
 
@@ -191,13 +192,14 @@ export default function WhyChooseUs() {
                   <motion.div
                     style={{
                       borderRadius: '50%',
-                      backgroundColor: 'white',
-                      boxShadow: '0 14px 30px rgba(83,190,221,0.15), 0 6px 12px rgba(0,0,0,0.06)',
+                      backgroundColor: '#0B1120', // Dark background
+                      background: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)', // Dark gradient
+                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      border: '4px solid #53bedd',
+                      border: '2px solid rgba(255,255,255,0.1)', // Subtle border
                       width: sizes.itemSize,
                       height: sizes.itemSize,
                       marginLeft: -sizes.halfItem,
@@ -207,7 +209,7 @@ export default function WhyChooseUs() {
                   >
                     <value.icon
                       style={{
-                        color: '#53bedd',
+                        color: '#ebeeefff', // Sky blue icon
                         marginBottom: '0.25rem',
                         width: sizes.itemSize * 0.33,
                         height: sizes.itemSize * 0.33,
@@ -216,9 +218,10 @@ export default function WhyChooseUs() {
                     <span 
                       style={{
                         fontSize: '0.75rem',
-                        color: '#374151',
+                        color: '#e2e8f0', // Light text
                         textAlign: 'center',
-                        padding: '0 0.5rem'
+                        padding: '0 0.5rem',
+                        fontWeight: 500
                       }}
                     >
                       {value.title}
@@ -235,8 +238,8 @@ export default function WhyChooseUs() {
               position: 'relative',
               zIndex: 10,
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #53bedd, #2a9cbd)',
-              boxShadow: '0 24px 50px rgba(83,190,221,0.18), 0 10px 20px rgba(0,0,0,0.08)',
+              background: 'linear-gradient(135deg, #1e293b, #0f172a)', // Dark center
+              boxShadow: '0 24px 50px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.2)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

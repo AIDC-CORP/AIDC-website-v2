@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, Zap, BarChart3, ShieldCheck, FileText } from 'lucide-react';
 
 // Import assets relative to this file
-import img1 from '../assets/Screenshot 2025-11-29 at 09.42.26.png';
-import img2 from '../assets/Screenshot 2025-11-29 at 09.42.50.png';
-import img3 from '../assets/Screenshot 2025-11-29 at 09.43.11.png';
-import img4 from '../assets/Screenshot 2025-11-29 at 09.43.57.png';
+import img1 from '../assets/2-Picsart-AiImageEnhancer.jpg';
+import img2 from '../assets/3-Picsart-AiImageEnhancer.jpg';
+import img3 from '../assets/5-Picsart-AiImageEnhancer.jpg';
+import img4 from '../assets/4-Picsart-AiImageEnhancer.jpg';
 
 export default function ProductDetail() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -306,7 +306,7 @@ export default function ProductDetail() {
          <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', padding: '0 1rem', position: 'relative', zIndex: 10 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
                 {[
-                    { label: "Active Users", value: "10k+" },
+                    { label: "Active Users", value: "100+" },
                     { label: "Accuracy Rate", value: "99.9%" },
                     { label: "Uptime", value: "99.99%" },
                     { label: "Support", value: "24/7" },
@@ -378,15 +378,16 @@ export default function ProductDetail() {
         <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
             <div style={{ 
                 maxWidth: '56rem', margin: '0 auto', 
-                background: 'linear-gradient(135deg, #2563eb, #4338ca)', 
+                background: 'linear-gradient(135deg, #1e293b, #0f172a)', 
                 borderRadius: '2.5rem', padding: '4rem', textAlign: 'center', color: 'white',
-                boxShadow: '0 25px 50px -12px rgba(30, 58, 138, 0.25)', position: 'relative', overflow: 'hidden'
+                boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.5)', position: 'relative', overflow: 'hidden',
+                border: '1px solid rgba(255,255,255,0.1)'
             }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '16rem', height: '16rem', background: 'rgba(255,255,255,0.1)', borderRadius: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(64px)' }}></div>
-                <div style={{ position: 'absolute', bottom: 0, right: 0, width: '16rem', height: '16rem', background: 'rgba(99, 102, 241, 0.3)', borderRadius: '50%', transform: 'translate(50%, 50%)', filter: 'blur(64px)' }}></div>
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '20rem', height: '20rem', background: 'rgba(56, 189, 248, 0.15)', borderRadius: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }}></div>
+                <div style={{ position: 'absolute', bottom: 0, right: 0, width: '20rem', height: '20rem', background: 'rgba(59, 130, 246, 0.15)', borderRadius: '50%', transform: 'translate(50%, 50%)', filter: 'blur(80px)' }}></div>
 
                 <h2 style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '1.5rem', position: 'relative', zIndex: 10 }}>Ready to transform your workplace?</h2>
-                <p style={{ color: '#dbeafe', fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '42rem', margin: '0 auto 2.5rem', position: 'relative', zIndex: 10 }}>
+                <p style={{ color: '#94a3b8', fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '42rem', margin: '0 auto 2.5rem', position: 'relative', zIndex: 10 }}>
                     Join thousands of forward-thinking companies using our Smart Attendance solution.
                 </p>
                 <Link 
@@ -394,10 +395,10 @@ export default function ProductDetail() {
                     className="cta-btn"
                     style={{ 
                         position: 'relative', zIndex: 10, display: 'inline-block', 
-                        padding: '1.25rem 2.5rem', backgroundColor: 'white', color: '#1d4ed8', 
+                        padding: '1.25rem 2.5rem', backgroundColor: '#3b82f6', color: 'white', 
                         fontWeight: 700, fontSize: '1.125rem', borderRadius: '9999px', 
                         textDecoration: 'none', transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.4)'
                     }}
                 >
                     Get Started Now
