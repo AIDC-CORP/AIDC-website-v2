@@ -214,13 +214,15 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="hero-text-gradient"
                 style={{ 
                   fontWeight: 800, 
                   fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em',
-                  marginBottom: '0.5rem'
+                  marginBottom: '0.5rem',
+                  background: 'linear-gradient(to bottom, #ffffff, #ffffff, #94a3b8)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
                 }}
               >
                 {t('hero_title')}

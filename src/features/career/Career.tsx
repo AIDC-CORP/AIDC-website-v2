@@ -117,11 +117,61 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
   return (
     <div className="pt-32 pb-20" style={{ marginTop: `-${headerHeightPx}px`, paddingTop: `${headerHeightPx + 80}px` }}>
       {/* Section 1 - Header with Filters */}
-      <section className="py-20 bg-[#0a2342]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4 pt-16">
-            <h1 className="text-[#53bedd]">{t('career_heading')}</h1>
-            <p className="text-white/90 max-w-3xl mx-auto">
+      <section 
+         style={{
+          position: 'relative',
+          padding: '8rem 0 6rem',
+          backgroundColor: '#0B1120',
+          color: 'white',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Abstract Background Layers */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <div style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                backgroundImage: 'linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #4f4f4f2e 1px, transparent 1px)', 
+                backgroundSize: '14px 24px',
+                maskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)'
+            }} />
+            <div style={{ 
+                position: 'absolute', top: '-10%', right: '-5%', 
+                width: '600px', height: '600px', 
+                background: 'rgba(56, 189, 248, 0.15)', // sky-400
+                filter: 'blur(100px)', borderRadius: '100%', 
+                opacity: 0.5
+            }} />
+            <div style={{ 
+                position: 'absolute', bottom: '-10%', left: '-5%', 
+                width: '500px', height: '500px', 
+                background: 'rgba(99, 102, 241, 0.15)', // indigo-500
+                filter: 'blur(100px)', borderRadius: '100%', 
+                opacity: 0.4
+            }} />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12 space-y-4">
+            <h1 
+                style={{ 
+                  fontWeight: 800, 
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '1rem',
+                  background: 'linear-gradient(to bottom, #ffffff, #ffffff, #94a3b8)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+            >
+                {t('career_heading')}
+            </h1>
+            <p 
+                style={{ fontSize: '1.125rem', color: '#94a3b8', fontWeight: 300, lineHeight: 1.6 }}
+                className="max-w-3xl mx-auto"
+            >
               {t('career_intro')}
             </p>
           </div>
@@ -129,7 +179,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
           {/* Filters */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
             <Select value={positionFilter} onValueChange={setPositionFilter}>
-              <SelectTrigger className="bg-white">
+              <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-gray-400">
                 <SelectValue placeholder={t('career_filter_position')} />
               </SelectTrigger>
               <SelectContent>
@@ -141,7 +191,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
             </Select>
 
             <Select value={dateFilter} onValueChange={setDateFilter}>
-              <SelectTrigger className="bg-white">
+              <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-gray-400">
                 <SelectValue placeholder={t('career_filter_date')} />
               </SelectTrigger>
               <SelectContent>
@@ -152,7 +202,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
             </Select>
 
             <Select value={fieldFilter} onValueChange={setFieldFilter}>
-              <SelectTrigger className="bg-white">
+              <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-gray-400">
                 <SelectValue placeholder={t('career_filter_field')} />
               </SelectTrigger>
               <SelectContent>
@@ -171,7 +221,7 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
                 placeholder={t('career_search_placeholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-white"
+                className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:bg-white/20 transition-all"
               />
             </div>
           </div>

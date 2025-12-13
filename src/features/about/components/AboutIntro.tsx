@@ -120,12 +120,15 @@ export default function AboutIntro({
               </div>
 
               <h2 
-                className="hero-text-gradient mb-6"
+                className="mb-6"
                 style={{ 
                   fontWeight: 800, 
                   fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                   lineHeight: 1.1,
-                  letterSpacing: '-0.02em'
+                  letterSpacing: '-0.02em',
+                  background: 'linear-gradient(to bottom, #ffffff, #ffffff, #94a3b8)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
                 }}
               >
                 {t('about_title')}
