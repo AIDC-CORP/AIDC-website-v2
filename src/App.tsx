@@ -1,4 +1,4 @@
-import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -6,6 +6,8 @@ import Home from "./features/home/Home";
 import About from "./features/about/About";
 import Career from "./features/career/Career";
 import Contact from "./features/contact/Contact";
+import Product from "./features/product/Product";
+import ProductDetail from "./features/product/components/ProductDetail";
 import ComingSoon from "./features/common/ComingSoon";
 import ScrollToTop from "./lib/ScrollToTop";
 import { I18nProvider } from "./shared/contexts/I18nContext";
@@ -21,6 +23,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/career" element={<Career />} />
               <Route path="/blog" element={<ComingSoon />} />
               <Route path="/contact" element={<Contact />} />
