@@ -54,9 +54,6 @@ export default function AboutIntro({
         @media (min-width: 768px) {
             .image-grid {
                 grid-template-columns: repeat(2, 1fr);
-                width: 110%;
-                transform: scale(1.1);
-                transform-origin: center;
                 gap: 1.5rem;
             }
         }

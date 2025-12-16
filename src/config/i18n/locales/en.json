@@ -44,7 +44,7 @@
   "contact_phone": "Phone",
   "contact_email": "Email",
   "contact_hours": "Office hours",
-  "contact_hours_mon": "Mon - Sat: 8 am - 5 pm",
+  "contact_hours_mon": "Mon - Sat: 8:30 am - 5:30 pm",
   "contact_hours_sun": "Sunday: CLOSED",
   "contact_name": "Your name",
   "contact_email_ph": "Your email",
@@ -88,7 +88,7 @@
   "bod_quyet_name": "Mr. Trinh Van Quyet",
   "bod_quyet_position": "Director & Co-Founder",
   "bod_quyet_desc": "With extensive experience in AI Technology and Digital Transformation, Mr. Quyet Trinh plays a strategic role in shaping the company's vision and driving technological growth at Vietnam AI Technology & Digital Transformation JSC. He is the key architect of the company's core technology values, aiming to position the company as a pioneer in delivering comprehensive and sustainable digital solutions.",
-  "bod_dung_name": "Mr Le Duc Dung",
+  "bod_dung_name": "Mr. Le Duc Dung",
   "bod_dung_position": "Head of AI Department - Co-Founder",
   "bod_dung_desc": "Mr. Duc Dung, Deputy Director of the AI Center for Green Agriculture at Vietnam AI Technology & Digital Transformation JSC, plays a central role in applying artificial intelligence to sustainable farming solutions. He leads initiatives in smart automation, environmental monitoring, and CO₂ process optimization, enabling agricultural enterprises to improve productivity, reduce costs, and achieve long-term sustainability. His leadership fosters innovation and positions the company at the forefront of green agriculture transformation.",
   "mission_vision_heading": "Intelligent Foundations",
@@ -152,5 +152,14 @@
   "footer_blog": "Blog",
   "footer_contact": "Contact",
   "footer_contact_info": "Contact Information",
-  "footer_copyright": "All rights reserved."
+  "footer_copyright": "All rights reserved.",
+  "contact_success_title": "Message Sent Successfully!",
+  "contact_success_message": "Thank you for contacting us. We'll get back to you as soon as possible.",
+  "contact_error_required": "Please fill in all required fields",
+  "contact_error_failed": "Failed to send message. Please try again.",
+  "contact_error_network": "An error occurred. Please check your connection.",
+  "contact_confirm_title": "Confirm Submission",
+  "contact_confirm_message": "Are you sure you want to send this message?",
+  "contact_confirm_send": "Send",
+  "contact_confirm_cancel": "Cancel"
 }

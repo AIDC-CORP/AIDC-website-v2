@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, Zap, BarChart3, ShieldCheck, FileText } from 'lucide-react';
+import { motion, useInView, useMotionValue, animate, useTransform } from 'motion/react';
 
 // Import assets relative to this file
 import img1 from '../assets/2-Picsart-AiImageEnhancer.jpg';
@@ -12,6 +12,38 @@ import img4 from '../assets/4-Picsart-AiImageEnhancer.jpg';
 
 export default function ProductDetail() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const AnimatedCounter = ({ value, label }: { value: string, label: string }) => {
+      const ref = React.useRef(null);
+      const inView = useInView(ref, { once: true, margin: "-20%" });
+      const numericValue = parseFloat(value.replace(/[^0-9.]/g, ''));
+      const suffix = value.replace(/[0-9.]/g, '');
+      const count = useMotionValue(0);
+      const rounded = useTransform(count, latest => {
+          if (value.includes('.')) {
+              if (value.split('.')[1].length > 1) return latest.toFixed(2);
+              return latest.toFixed(1);
+          }
+          return Math.round(latest).toString();
+      });
+      
+      React.useEffect(() => {
+          if (inView) {
+              const controls = animate(count, numericValue, { duration: 2, ease: "easeOut" });
+              return controls.stop;
+          }
+      }, [inView, numericValue]);
+
+      return (
+          <div ref={ref} style={{ padding: '0 1rem', borderRight: label !== "Support" ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
+              <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem', background: 'linear-gradient(to bottom, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <motion.span>{rounded}</motion.span>
+                  <span>{suffix}</span>
+              </div>
+              <div style={{ color: '#94a3b8', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{label}</div>
+          </div>
+      );
+  };
 
   const features = [
     {
@@ -207,7 +239,7 @@ export default function ProductDetail() {
             style={{ marginTop: '3rem', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}
           >
              <button 
-                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} 
+                onClick={() => document.getElementById('engineered-efficiency')?.scrollIntoView({ behavior: 'smooth' })} 
                 style={{ 
                     padding: '1rem 2rem', backgroundColor: 'white', color: '#0f172a', 
                     borderRadius: '9999px', fontWeight: 700, border: 'none', cursor: 'pointer',
@@ -231,8 +263,8 @@ export default function ProductDetail() {
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1px', background: 'linear-gradient(to right, transparent, #e2e8f0, transparent)' }}></div>
         
         <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-             <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem', color: '#0f172a', letterSpacing: '-0.025em' }}>Engineered for Efficiency</h2>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+             <h2 id="engineered-efficiency" style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem', color: '#0f172a', letterSpacing: '-0.025em', scrollMarginTop: '140px' }}>Engineered for Efficiency</h2>
              <p style={{ fontSize: '1.25rem', color: '#64748b', maxWidth: '42rem', margin: '0 auto' }}>Every feature is designed to reduce administrative overhead and improve accuracy.</p>
           </div>
 
@@ -311,10 +343,16 @@ export default function ProductDetail() {
                     { label: "Uptime", value: "99.99%" },
                     { label: "Support", value: "24/7" },
                 ].map((stat, i) => (
-                    <div key={i} style={{ padding: '0 1rem', borderRight: i !== 3 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
-                        <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem', background: 'linear-gradient(to bottom, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stat.value}</div>
-                        <div style={{ color: '#94a3b8', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</div>
-                    </div>
+                    stat.label === "Support" ? (
+                        <div key={i} style={{ padding: '0 1rem', borderRight: i !== 3 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
+                            <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem', background: 'linear-gradient(to bottom, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                {stat.value}
+                            </div>
+                            <div style={{ color: '#94a3b8', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</div>
+                        </div>
+                    ) : (
+                        <AnimatedCounter key={i} value={stat.value} label={stat.label} />
+                    )
                 ))}
             </div>
          </div>

@@ -138,7 +138,7 @@ export default function BoardOfDirectors() {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-0 max-w-6xl mx-auto">
           {/* Left - Circular Gallery */}
           <div className="lg:w-1/2 flex items-center justify-center">
             <div className="relative w-96 h-96">
@@ -209,7 +209,7 @@ export default function BoardOfDirectors() {
           </div>
 
           {/* Right - Director Info */}
-          <div className="lg:w-1/2" style={{ paddingLeft: '2rem' }}>
+          <div className="lg:w-1/2">
             <motion.div
               key={`info-${selectedIndex}`}
               initial={{ opacity: 0, x: 30 }}
@@ -233,14 +233,15 @@ export default function BoardOfDirectors() {
 
               <div style={{ position: 'relative', zIndex: 1 }}>
                   <h3 style={{
-                    fontSize: '3.5rem',
+                    fontSize: 'clamp(2rem, 3.5vw, 3.5rem)',
                     fontWeight: 800,
                     lineHeight: 1.1,
                     background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     marginBottom: '1rem',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    whiteSpace: 'nowrap'
                   }}>
                     {directors[selectedIndex].name}
                   </h3>

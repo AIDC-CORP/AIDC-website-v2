@@ -68,7 +68,7 @@ export default function ProductIntro() {
               {t('nav_product')}
             </motion.h1>
             
-            <motion.p
+        <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -77,11 +77,39 @@ export default function ProductIntro() {
                   color: '#94a3b8', 
                   maxWidth: '48rem', 
                   margin: '0 auto', 
-                  lineHeight: 1.6 
+                  lineHeight: 1.6,
+                  marginBottom: '2.5rem'
               }}
             >
               {t('hero_desc_1')}
             </motion.p>
+
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                const element = document.getElementById('engineered-efficiency');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '1rem 2rem',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                borderRadius: '9999px',
+                fontWeight: 600,
+                fontSize: '1rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px 0 rgba(59, 130, 246, 0.39)',
+              }}
+            >
+              Explore feature
+            </motion.button>
         </div>
       </div>
     </div>

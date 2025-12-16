@@ -66,7 +66,7 @@ function ContactMapSection() {
           flex: 1,
           height: '400px',
           padding: '2rem',
-          background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+          background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
           borderRadius: '12px',
           boxShadow: '0 4px 12px rgba(9, 25, 45, 0.1)',
           overflowY: 'auto',
@@ -80,7 +80,7 @@ function ContactMapSection() {
           <div style={{ marginBottom: '1.5rem' }}>
             <p style={{
               fontSize: '1rem',
-              color: '#495057',
+              color: '#475569',
               margin: '0 0 0.5rem 0',
               lineHeight: 1.6,
             }}>
@@ -112,7 +112,7 @@ function ContactMapSection() {
       }}>
         <Button
           onClick={openGoogleMaps}
-          className="bg-gradient-to-r from-[#53bedd] to-[#2a9cbd] hover:shadow-lg hover:shadow-[#53bedd]/30 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 flex items-center gap-2 border-0"
+          className="text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 flex items-center gap-2 border-0"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -122,15 +122,16 @@ function ContactMapSection() {
             fontWeight: 600,
             borderRadius: '9999px',
             cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(83, 190, 221, 0.3)',
+            boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)', // blue-500 shadow
             transition: 'all 0.3s ease',
+            backgroundColor: '#3b82f6'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 8px 25px rgba(83, 190, 221, 0.4)';
+            e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
             e.currentTarget.style.transform = 'translateY(-2px)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(83, 190, 221, 0.3)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
             e.currentTarget.style.transform = 'translateY(0)';
           }}
         >

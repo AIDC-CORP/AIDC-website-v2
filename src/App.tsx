@@ -7,7 +7,7 @@ import About from "./features/about/About";
 import Career from "./features/career/Career";
 import Contact from "./features/contact/Contact";
 import Product from "./features/product/Product";
-import ProductDetail from "./features/product/components/ProductDetail";
+import ProductDetail from "./features/product/components/ProductDetailWorkMind";
 import ComingSoon from "./features/common/ComingSoon";
 import ScrollToTop from "./lib/ScrollToTop";
 import { I18nProvider } from "./shared/contexts/I18nContext";

@@ -159,9 +159,13 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-4 xl:gap-8 flex-1 justify-center">
               {items.map((item) => {
                 const isActive = location.pathname === item.path;
-                const linkClass = `text-gray-800 hover:text-[#53bedd] transition-colors relative group whitespace-nowrap ${
-                  isActive ? 'text-[#53bedd]' : ''
-                }`;
+                const linkStyle = {
+                  fontWeight: 700,
+                  color: isActive ? '#53bedd' : '#0f172a',
+                  fontSize: '16px',
+                  letterSpacing: '0.02em',
+                };
+                const linkClass = `hover:text-[#53bedd] transition-colors relative group whitespace-nowrap tracking-wide`;
                 
                 if (item.external) {
                   return (
@@ -171,6 +175,7 @@ export default function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={linkClass}
+                      style={linkStyle}
                     >
                       {item.label}
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#53bedd] group-hover:w-full transition-all duration-300" />
@@ -183,6 +188,7 @@ export default function Header() {
                     key={item.path}
                     to={item.path}
                     className={linkClass}
+                    style={linkStyle}
                   >
                     {item.label}
                     <span

@@ -44,7 +44,7 @@
   "contact_phone": "Điện thoại",
   "contact_email": "Email",
   "contact_hours": "Giờ làm việc",
-  "contact_hours_mon": "Thứ 2 - Thứ 7: 8:00 - 17:00",
+  "contact_hours_mon": "Thứ 2 - Thứ 7: 8:30 - 17:30",
   "contact_hours_sun": "Chủ nhật: Nghỉ",
   "contact_name": "Họ và tên",
   "contact_email_ph": "Email của bạn",
@@ -62,7 +62,7 @@
   "map_phone_value": "+84 865903798",
   "map_email_value": "contact@aidccompany.com",
   "map_address_value": "Hà Nội, Việt Nam",
-  "map_hours_value": "Thứ Hai - Thứ Bảy: 8:00 - 17:00",
+  "map_hours_value": "Thứ Hai - Thứ Bảy: 8:30 - 17:30",
   "map_open_google_maps": "Mở trong Google Maps",
   "about_title": "Về chúng tôi",
   "about_intro": "Công ty Cổ phần Công nghệ AI và Chuyển đổi Số Việt Nam (AIDC Corp.) được thành lập với sứ mệnh tiên phong trong các lĩnh vực AI, dữ liệu và công nghệ số. Chúng tôi cung cấp các giải pháp end-to-end từ phát triển phần mềm, phân tích dữ liệu đến R&D trong AI, AR/VR và tự động hóa nông nghiệp xanh, giúp doanh nghiệp tối ưu vận hành và hướng tới tăng trưởng bền vững. Chúng tôi cũng ứng dụng AI để giám sát và cải thiện quy trình CO₂, hỗ trợ doanh nghiệp giảm tác động môi trường. Đổi mới và công nghệ tiên tiến luôn là cốt lõi trong tầm nhìn, giúp chúng tôi mang đến các giải pháp tùy chỉnh và bền vững cho khách hàng.",
@@ -152,5 +152,14 @@
   "footer_blog": "Blog",
   "footer_contact": "Liên hệ",
   "footer_contact_info": "Thông tin liên hệ",
-  "footer_copyright": "Đã đăng ký bản quyền."
+  "footer_copyright": "Đã đăng ký bản quyền.",
+  "contact_success_title": "Gửi tin nhắn thành công!",
+  "contact_success_message": "Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ phản hồi trong thời gian sớm nhất.",
+  "contact_error_required": "Vui lòng điền đầy đủ các trường bắt buộc",
+  "contact_error_failed": "Gửi tin nhắn thất bại. Vui lòng thử lại.",
+  "contact_error_network": "Đã xảy ra lỗi. Vui lòng kiểm tra kết nối.",
+  "contact_confirm_title": "Xác nhận gửi",
+  "contact_confirm_message": "Bạn có chắc chắn muốn gửi tin nhắn này?",
+  "contact_confirm_send": "Gửi",
+  "contact_confirm_cancel": "Hủy"
 }
