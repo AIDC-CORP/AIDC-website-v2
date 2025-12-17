@@ -12,7 +12,7 @@ export const contactService = {
           'accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        timeout: 10000, 
+        timeout: 60000, 
       });
 
       console.log('[ContactService] SUCCESS', response.data);
