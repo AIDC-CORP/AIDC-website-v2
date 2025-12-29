@@ -5,6 +5,7 @@ import Footer from "./components/layout/Footer";
 import Home from "./features/home/Home";
 import About from "./features/about/About";
 import Career from "./features/career/Career";
+import CareerDetail from "./features/career/CareerDetail";
 import Contact from "./features/contact/Contact";
 import Product from "./features/product/Product";
 import ProductDetail from "./features/product/components/ProductDetailWorkMind";
@@ -26,6 +27,7 @@ export default function App() {
               <Route path="/product" element={<Product />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/career" element={<Career />} />
+              <Route path="/career/:id" element={<CareerDetail />} />
               <Route path="/blog" element={<ComingSoon />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
