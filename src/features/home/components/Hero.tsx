@@ -34,7 +34,7 @@ export default function Hero() {
             -webkit-text-fill-color: transparent;
         }
         .hero-responsive {
-          padding-top: 6rem;
+          padding-top: 8.5rem;
         }
         .hero-content-responsive {
           flex-direction: column;
@@ -54,9 +54,13 @@ export default function Hero() {
         }
         .hero-right-responsive {
           width: 100%;
+          display: flex;
+          justify-content: center;
         }
         .hero-image-responsive {
-          display: none;
+          display: block;
+          width: 16rem;
+          height: 16rem;
         }
         .hero-buttons-responsive {
           flex-direction: column;
@@ -77,8 +81,8 @@ export default function Hero() {
           }
           .hero-image-responsive {
             display: block;
-            width: 32rem;
-            height: 32rem;
+            width: 22rem;
+            height: 22rem;
           }
         }
         @media (min-width: 992px) {
@@ -97,6 +101,7 @@ export default function Hero() {
           }
           .hero-right-responsive {
             width: 40%;
+            display: block;
           }
           .hero-image-responsive {
             width: 20rem;
@@ -133,14 +138,14 @@ export default function Hero() {
         className="hero-responsive"
         style={{
           position: 'relative',
-          height: '100vh',
-          minHeight: '700px',
+          minHeight: '100vh',
+          height: 'auto',
           overflow: 'hidden',
-          backgroundColor: '#0B1120' // Fallback
+          backgroundColor: '#0B1120', // Fallback
+          paddingBottom: '4rem' // Give some bottom space
         }}
       >
-        {/* Background Image with Overlay */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, minHeight: '950px' }}>
           <div
             style={{
               position: 'absolute',
