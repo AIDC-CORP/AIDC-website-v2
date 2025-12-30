@@ -1,28 +1,8 @@
 import { useI18n } from '../../shared/hooks/useI18n';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { JobDetail, jobService, formatDeadline, formatSalary, mapJobTypeToVietnamese } from '../../services/Job';
 
-interface JobDetail {
-  id: string;
-  title: string;
-  job_type: string;
-  location: string;
-  working_address: string;
-  salary_type: 'fixed' | 'negotiable' | 'range';
-  salary_min?: number;
-  salary_max?: number;
-  currency?: string;
-  quantity: number;
-  deadline: string;
-  job_description: string[];
-  requirements: string;
-  benefits: string;
-  work_environment: string[];
-  working_time: any;
-  contact: any;
-  status: string;
-  tags: string[];
-}
 
 export default function CareerDetail({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
   const { t } = useI18n();
@@ -31,39 +11,12 @@ export default function CareerDetail({ headerHeightPx = 60 }: { headerHeightPx?:
   const [job, setJob] = useState<JobDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Format deadline from ISO to dd/mm/yyyy
-  const formatDeadline = (isoDate: string) => {
-    const date = new Date(isoDate);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
-  // Format salary based on salary_type
-  const formatSalary = (job: JobDetail) => {
-    if (job.salary_type === 'negotiable') {
-      return 'Thỏa thuận';
-    } else if (job.salary_type === 'fixed' && job.salary_min) {
-      return `${job.salary_min.toLocaleString()} ${job.currency || 'VND'}`;
-    } else if (job.salary_type === 'range' && job.salary_min && job.salary_max) {
-      return `${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()} ${job.currency || 'VND'}`;
-    }
-    return 'Thỏa thuận';
-  };
-
   // Fetch job detail from API
   useEffect(() => {
     const fetchJobDetail = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/v1/backend/public/jobs/${id}`);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
+        const data = await jobService.getJobById(id!);
         setJob(data);
       } catch (error) {
         console.error('Error fetching job detail:', error);
@@ -162,7 +115,7 @@ export default function CareerDetail({ headerHeightPx = 60 }: { headerHeightPx?:
                   <span style={{ fontSize: '0.5rem' }}>●</span>
                   <span>{job.location}</span>
                   <span style={{ fontSize: '0.5rem' }}>●</span>
-                  <span>{job.job_type === 'full_time' ? 'Toàn thời gian' : job.job_type === 'part_time' ? 'Bán thời gian' : 'Thực tập'}</span>
+                  <span>{mapJobTypeToVietnamese(job.job_type)}</span>
                 </div>
                 
                 <button

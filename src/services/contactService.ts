@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { ContactFormData, ContactResponse } from '../index';
+import { ContactFormData, ContactResponse } from '../features/contact/index';
 
-const API_URL = 'https://aidc-web-services.onrender.com/api/v1/contact';
+const API_URL = import.meta.env.VITE_API_CONTACT_URL;
 
 export const contactService = {
   sendMessage: async (data: ContactFormData): Promise<ContactResponse> => {

@@ -1,33 +1,8 @@
 import { useI18n } from '../../shared/hooks/useI18n';
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Job, Filters, jobService, formatDeadline, formatSalary } from '../../services/Job';
 
-interface Job {
-  id: string;
-  title: string;
-  location: string;
-  salary_type: 'fixed' | 'negotiable' | 'range';
-  salary_min?: number;
-  salary_max?: number;
-  currency?: string;
-  deadline: string;
-  job_type?: string;
-  tags?: string[];
-}
-
-interface JobsResponse {
-  items: Job[];
-  total: number;
-  page: number;
-  page_limit: number;
-}
-
-interface Filters {
-  locations: string[];
-  jobTypes: string[];
-  positions: string[];
-  categories: string[];
-}
 
 export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: number }) {
   const { t } = useI18n();
@@ -109,41 +84,12 @@ export default function Career({ headerHeightPx = 60 }: { headerHeightPx?: numbe
     });
   }, [jobs, filters, searchQuery]);
 
-  // Format deadline from ISO to dd/mm/yyyy
-  const formatDeadline = (isoDate: string) => {
-    const date = new Date(isoDate);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
-  // Format salary based on salary_type
-  const formatSalary = (job: Job) => {
-    if (job.salary_type === 'negotiable') {
-      return 'Thỏa thuận';
-    } else if (job.salary_type === 'fixed' && job.salary_min) {
-      return `${job.salary_min.toLocaleString()} ${job.currency || 'VND'}`;
-    } else if (job.salary_type === 'range' && job.salary_min && job.salary_max) {
-      return `${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()} ${job.currency || 'VND'}`;
-    }
-    return 'Thỏa thuận';
-  };
-
   // Fetch jobs from API
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          `/api/v1/backend/public/jobs?page=${currentPage}&page_limit=${pageLimit}`
-        );
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data: JobsResponse = await response.json();
+        const data = await jobService.getJobs(currentPage, pageLimit);
         setJobs(data.items);
         setTotal(data.total);
         setPageLimit(data.page_limit);

@@ -4,7 +4,7 @@ import { Textarea } from '../../../components/ui/textarea';
 import { Button } from '../../../components/ui/button';
 import { useI18n } from '../../../shared/hooks/useI18n';
 import { toast } from "sonner";
-import { contactService } from '../services/contactService';
+import { contactService } from '../../../services/contactService';
 import ConfirmationModal from './ConfirmationModal';
 import SuccessNotification from './SuccessNotification';
 
