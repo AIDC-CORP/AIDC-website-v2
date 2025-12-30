@@ -59,7 +59,7 @@
       open: false,
       proxy: {
         '/api': {
-          target: 'http://localhost:8111',
+          target: 'http://192.168.1.106:8111',
           changeOrigin: true,
           secure: false,
         },
